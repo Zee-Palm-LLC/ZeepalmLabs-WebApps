@@ -7,7 +7,7 @@ Websites, landing pages and web apps built by Zeepalm Labs. Each folder is a sel
 | Website | What it is | Built with | Live demo |
 |---|---|---|---|
 | [Repline](repline) | Scroll-driven story page for a smart gym tracker. A scrubbed lift video with live bar-speed overlays, a sideways how-it-works section, a set you can try, and an animated closing run to the waitlist. | React, Vite, GSAP, Lenis | [zeepalm-repline.vercel.app](https://zeepalm-repline.vercel.app) |
-| [Ember](ember) | Wood-fire grill house. A scroll-scrubbed steak cook with a live kitchen ticket and probe, a canvas flame you can switch between woods, a 45-day dry-age chamber, a steak builder with a live cross-section, a printed menu and a full table booking flow. | React, Vite, GSAP, Lenis, Canvas | Not deployed yet |
+| [Ember](ember) | Wood-fire grill house. A scroll-scrubbed steak cook with a live kitchen ticket and probe, a canvas flame you can switch between woods, a 45-day dry-age chamber, a steak builder with a live cross-section, a printed menu and a full table booking flow. | React, Vite, GSAP, Lenis, Canvas | [zeepalm-ember.vercel.app](https://zeepalm-ember.vercel.app) |
 
 ## Adding a website
 

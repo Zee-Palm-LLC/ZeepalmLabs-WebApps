@@ -2,6 +2,8 @@
 
 Scroll-driven landing page for Ember, a wood-fire grill house. Everything we cook touches the fire.
 
+Live: [zeepalm-ember.vercel.app](https://zeepalm-ember.vercel.app)
+
 ## Run it
 
 ```bash
@@ -10,6 +12,10 @@ npm run dev
 ```
 
 `npm run build` writes the production site to `dist`.
+
+## Deploy
+
+The site is the Vercel project `ember`, built from this repo with `ember` as the root directory, the Vite preset, `npm run build` and output `dist`. The project is not connected to Git, so after pushing to `main`, create a new production deployment from the `main` branch in Vercel.
 
 ## The page, top to bottom
 
