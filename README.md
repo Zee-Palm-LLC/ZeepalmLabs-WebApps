@@ -4,9 +4,9 @@ Websites, landing pages and web apps built by Zeepalm Labs. Each folder is a sel
 
 ## Websites
 
-| Website | What it is | Built with |
-|---|---|---|
-| [Repline](repline) | Scroll-driven story page for a smart gym tracker. A scrubbed lift video with live bar-speed overlays, a sideways how-it-works section, a set you can try, and an animated closing run to the waitlist. | React, Vite, GSAP, Lenis |
+| Website | What it is | Built with | Live demo |
+|---|---|---|---|
+| [Repline](repline) | Scroll-driven story page for a smart gym tracker. A scrubbed lift video with live bar-speed overlays, a sideways how-it-works section, a set you can try, and an animated closing run to the waitlist. | React, Vite, GSAP, Lenis | [zeepalm-repline.vercel.app](https://zeepalm-repline.vercel.app) |
 
 ## Adding a website
 

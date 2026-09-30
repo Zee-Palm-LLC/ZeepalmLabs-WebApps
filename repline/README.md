@@ -2,6 +2,8 @@
 
 Scroll-driven story page for Repline, a smart gym tech brand. One rep at a time.
 
+Live: [zeepalm-repline.vercel.app](https://zeepalm-repline.vercel.app)
+
 ## Run it
 
 ```bash
@@ -10,6 +12,10 @@ npm run dev
 ```
 
 `npm run build` writes the production site to `dist`.
+
+## Deploy
+
+The site is the Vercel project `repline`, built from this repo with `repline` as the root directory, the Vite preset, `npm run build` and output `dist`. After pushing to `main`, create a new production deployment from the `main` branch in Vercel.
 
 ## The story, top to bottom
 
