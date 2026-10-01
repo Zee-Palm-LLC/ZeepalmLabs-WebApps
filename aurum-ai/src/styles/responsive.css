@@ -1,0 +1,117 @@
+.graph-canvas {
+  touch-action: none;
+}
+
+.detail-handle {
+  display: none;
+}
+
+.is-compact .years {
+  display: none;
+}
+
+.is-compact .tb-group {
+  top: 76px;
+}
+
+.is-compact .tb-icon {
+  display: none;
+}
+
+.is-compact .tb-new {
+  left: 1340px;
+}
+
+.is-compact .legend {
+  translate: none;
+  left: 12px;
+  top: 136px;
+  display: flex;
+  align-items: center;
+  width: calc(var(--sw) - 24px);
+  height: 40px;
+  padding: 0 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 12px;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.is-compact .legend::-webkit-scrollbar {
+  display: none;
+}
+
+.is-compact .legend-title,
+.is-compact .legend-stat {
+  display: none;
+}
+
+.is-compact .legend-rows {
+  display: flex;
+  gap: 18px;
+  margin: 0;
+}
+
+.is-compact .legend-rows > li {
+  margin: 0;
+}
+
+.is-compact .legend-row {
+  height: 32px;
+  font-size: 13.5px;
+}
+
+.is-compact .kpi-pill {
+  display: none;
+}
+
+.is-compact .detail {
+  transform-origin: 0 0;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 -18px 50px -10px rgba(0, 0, 0, 0.85);
+}
+
+.is-compact .detail-handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: block;
+  height: 70px;
+  border-radius: 34px 34px 0 0;
+  cursor: pointer;
+}
+
+.is-compact .detail-handle::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  width: 56px;
+  height: 5px;
+  margin-left: -28px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  transition: background-color 0.2s;
+}
+
+.is-compact .detail-handle:hover::before,
+.is-compact .detail.is-open .detail-handle::before {
+  background: rgba(142, 227, 218, 0.7);
+}
+
+.is-side .detail-handle {
+  display: none;
+}
+
+.is-compact .topbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--sw);
+  height: 132px;
+  background: linear-gradient(180deg, rgba(2, 5, 5, 0.92) 0%, rgba(2, 5, 5, 0.75) 55%, rgba(2, 5, 5, 0) 100%);
+  pointer-events: none;
+}

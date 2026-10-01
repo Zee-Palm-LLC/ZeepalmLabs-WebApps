@@ -1,0 +1,658 @@
+.law-world {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1600px;
+  height: 1200px;
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+.law-world > * {
+  pointer-events: auto;
+}
+
+.law-halo {
+  position: absolute;
+  left: -50px;
+  top: 390px;
+  width: 456px;
+  height: 456px;
+  border-radius: 50%;
+  background: radial-gradient(circle closest-side, #03080a 0%, #050b0d 52%, #0a1517 74%, #142322 92%, rgba(20, 35, 34, 0) 100%);
+  box-shadow: 0 0 0 1px rgba(170, 205, 200, 0.16);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.law-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.law-arc {
+  fill: none;
+  stroke: rgba(190, 220, 214, 0.1);
+  stroke-width: 1;
+}
+
+.law-link {
+  fill: none;
+  stroke: rgba(196, 226, 220, 0.55);
+  stroke-width: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.law-link.is-main {
+  stroke: rgba(236, 216, 176, 0.95);
+  stroke-width: 1.4;
+}
+
+.law-fan {
+  fill: none;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-width 0.25s;
+}
+
+.law-line-hot .law-fan {
+  stroke-width: 2.6;
+  filter: drop-shadow(0 0 4px rgba(240, 220, 170, 0.8));
+}
+
+.law-orb {
+  position: absolute;
+  pointer-events: none;
+}
+
+.law-title {
+  position: absolute;
+  left: 77.5px;
+  top: 492px;
+  width: 200px;
+  font-family: var(--cond);
+  font-size: 16.5px;
+  font-weight: 700;
+  line-height: 19px;
+  text-align: center;
+  color: #fbfbfa;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.law-title-1,
+.law-title-2 {
+  display: block;
+}
+
+.law-title [data-i] {
+  transition: opacity 0.12s;
+}
+
+.law-title .is-gold {
+  color: #dcbf8f;
+}
+
+.law-gaps {
+  position: absolute;
+  left: 157.5px;
+  top: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 44px;
+  opacity: 0;
+}
+
+.law-gaps-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: 44px;
+  height: 13px;
+  clip-path: polygon(6% 0, 100% 0, 96% 100%, 0 100%);
+  background: #2c3333;
+  font-family: var(--cond);
+  font-size: 8.6px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #e8ecec;
+}
+
+.law-gaps-tag b {
+  margin-left: 0;
+  color: #e3c28e;
+}
+
+.law-gaps-vote {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 12px;
+  padding: 0 4px;
+  border-radius: 3px;
+  background: #121818;
+}
+
+.law-gaps-bar {
+  position: relative;
+  width: 18px;
+  height: 6px;
+  border-radius: 2px;
+  background: #5c1f22;
+}
+
+.law-gaps-bar span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: #e2343b;
+}
+
+.law-card {
+  --glow: 0;
+  position: absolute;
+  display: block;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 7px;
+  background: linear-gradient(135deg, #203536 0%, #152728 55%, #0d1819 100%);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  text-align: left;
+  transform-origin: 0 50%;
+  transition: border-color 0.25s;
+  overflow: hidden;
+}
+
+.law-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(40, 150, 145, 0.35) 0%, rgba(84, 220, 208, 0.95) 100%);
+  opacity: var(--glow);
+  pointer-events: none;
+}
+
+.law-card:hover {
+  border-color: rgba(160, 226, 216, 0.35);
+}
+
+.law-card-tick {
+  position: absolute;
+  left: -1px;
+  top: 18px;
+  width: 3px;
+  height: 21px;
+  border-radius: 0 2px 2px 0;
+  background: #4fb6ae;
+  box-shadow: 0 0 6px rgba(79, 182, 174, 0.7);
+}
+
+.law-card-top {
+  position: absolute;
+  left: 14px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 22px;
+}
+
+.law-card-icon {
+  display: grid;
+  place-items: center;
+  width: 16px;
+}
+
+.law-card-num {
+  font-size: 25px;
+  line-height: 22px;
+  color: #f4f7f7;
+  font-variant-numeric: tabular-nums;
+}
+
+.law-card-label {
+  position: absolute;
+  left: 18px;
+  top: 37px;
+  font-size: 11.4px;
+  color: #97a3a2;
+  white-space: nowrap;
+}
+
+.law-card.is-selected {
+  left: 400px !important;
+  width: 183px !important;
+  border: 2.5px solid transparent;
+  border-radius: 8px;
+  background:
+    radial-gradient(ellipse 34% 70% at 100% 50%, rgba(240, 214, 160, 0.75), rgba(240, 214, 160, 0) 100%) padding-box,
+    linear-gradient(135deg, #2a302c 0%, #1e2522 60%, #1a201d 100%) padding-box,
+    linear-gradient(180deg, #f2e1bd 0%, #c7a77a 55%, #e8d3a8 100%) border-box;
+  box-shadow: 0 0 22px rgba(232, 206, 150, 0.25), 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.law-card.is-selected .law-card-tick {
+  display: none;
+}
+
+.law-card.is-selected .law-card-top {
+  left: 15.5px;
+  top: 11.5px;
+}
+
+.law-card.is-selected .law-card-label {
+  left: 25px;
+  top: 39px;
+  color: #f6f6f4;
+}
+
+.law-list {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.law-item {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: auto;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.law-node {
+  position: absolute;
+  left: -4.6px;
+  top: -4.6px;
+  width: 9.2px;
+  height: 9.2px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff1d4, #d9b277 45%, #84612f);
+  box-shadow: 0 0 6px rgba(240, 210, 150, 0.6);
+}
+
+.law-node::before {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 1px;
+  width: 22px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 100% 50%, rgba(250, 236, 200, 0.5), transparent 70%);
+}
+
+.law-name {
+  position: absolute;
+  left: 24px;
+  top: -18.5px;
+  font-size: 15px;
+  line-height: 18px;
+  color: #eef2f1;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.law-item:hover .law-name {
+  color: #f6dcae;
+}
+
+.law-meta {
+  position: absolute;
+  left: 25px;
+  top: 3px;
+  display: flex;
+  align-items: center;
+  height: 12px;
+  white-space: nowrap;
+}
+
+.law-chip {
+  display: grid;
+  place-items: center;
+  width: 56.5px;
+  height: 12px;
+  margin-right: 9.5px;
+  clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+  background: #364a4c;
+  font-size: 10.2px;
+  font-weight: 500;
+  color: #e3e9e9;
+}
+
+.law-chip sup {
+  margin-left: 1px;
+  font-size: 6px;
+}
+
+.law-bar {
+  display: flex;
+  gap: 1px;
+  width: 26.5px;
+  height: 8px;
+  margin-left: 7.5px;
+  padding: 1px;
+  border-radius: 2.5px;
+}
+
+.law-bar span {
+  flex: 1;
+  border-radius: 1.5px;
+}
+
+.law-bar-red {
+  background: #521c1f;
+}
+.law-bar-red .is-on {
+  background: #e3343c;
+}
+.law-bar-orange {
+  background: #57401c;
+}
+.law-bar-orange .is-on {
+  background: #f2a62b;
+}
+.law-bar-green {
+  background: #1d4632;
+}
+.law-bar-green .is-on {
+  background: #4fd08a;
+}
+
+.detail {
+  position: absolute;
+  left: 1069px;
+  top: 163px;
+  width: 508px;
+  height: 862px;
+  border-radius: 34px 34px 30px 30px;
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(70, 106, 108, 0.35), transparent 75%),
+    linear-gradient(176deg, #22383b 0%, #1b2e31 30%, #132326 62%, #0c171a 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+  transform-origin: 100% 50%;
+}
+
+.detail-head {
+  position: absolute;
+  left: 23px;
+  top: 21px;
+  right: 10px;
+}
+
+.detail-sector {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 18px;
+  color: #ead1a6;
+}
+
+.detail-title {
+  margin-top: 15px;
+  margin-left: 18px;
+  font-size: 26.7px;
+  font-weight: 400;
+  line-height: 39px;
+  white-space: nowrap;
+  letter-spacing: -0.005em;
+  color: #eef2f2;
+}
+
+.detail-status {
+  position: absolute;
+  left: 24px;
+  top: 174px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 460px;
+  height: 86px;
+  padding: 8px 13px 0 11px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.015);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.detail-active {
+  display: inline-grid;
+  place-items: center;
+  width: 56px;
+  height: 20px;
+  border: 1px solid #47b277;
+  border-radius: 5px;
+  background: rgba(40, 140, 80, 0.22);
+  font-size: 12.5px;
+  color: #e6f6ec;
+}
+
+.detail-updated {
+  margin-top: 9px;
+  font-size: 14.5px;
+  line-height: 16px;
+  color: #a6afaf;
+}
+
+.detail-updated b {
+  font-weight: 400;
+  color: #f1f3f3;
+}
+
+.detail-explore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 164px;
+  height: 39px;
+  margin-top: 22px;
+  border-radius: 8px;
+  background: #29383a;
+  font-size: 14.6px;
+  font-weight: 500;
+  color: #f2f5f5;
+  transition: background-color 0.2s;
+}
+
+.detail-explore:hover {
+  background: #33474a;
+}
+
+.detail-sentiment {
+  position: absolute;
+  left: 24px;
+  top: 281px;
+  width: 460px;
+  height: 141px;
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse 48% 70% at 10% 105%, rgba(112, 28, 32, 0.6), rgba(112, 28, 32, 0) 100%),
+    radial-gradient(ellipse 50% 60% at 70% 110%, rgba(90, 70, 40, 0.35), transparent 100%),
+    #08090c;
+  overflow: hidden;
+}
+
+.detail-sent-label {
+  position: absolute;
+  left: 24px;
+  top: 25px;
+  font-size: 18px;
+  color: #ecd3ad;
+}
+
+.detail-moderate {
+  position: absolute;
+  left: 370px;
+  top: 24px;
+  display: grid;
+  place-items: center;
+  width: 65px;
+  height: 23px;
+  border: 1.5px solid #bd9b6c;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #efe4d0;
+}
+
+.detail-sent-value {
+  position: absolute;
+  left: 22px;
+  top: 64px;
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.detail-sent-value > span:first-child {
+  font-size: 47px;
+  line-height: 46px;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-sent-delta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 7px;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.detail-sent-delta span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.detail-sent-month {
+  color: #84898a;
+}
+
+.detail-dots {
+  position: absolute;
+  left: 229.8px;
+  bottom: 29.5px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4.17px;
+  height: 64px;
+}
+
+.detail-dots span {
+  width: 2.6px;
+  height: calc(var(--h) * 6.4px);
+  background: radial-gradient(circle, #a3a8a8 0 1.15px, transparent 1.45px) 50% 100% / 2.6px 6.4px repeat-y;
+  transform-origin: 50% 100%;
+}
+
+.detail-dots .is-hot {
+  background: radial-gradient(circle, #ecc78d 0 1.25px, transparent 1.5px) 50% 100% / 2.6px 6.4px repeat-y;
+  filter: drop-shadow(0 0 3px rgba(242, 201, 139, 0.8));
+}
+
+.detail-grid {
+  position: absolute;
+  left: 24px;
+  top: 443px;
+  display: grid;
+  grid-template-columns: 225px 225px;
+  grid-template-rows: 118px 98px;
+  gap: 10px;
+}
+
+.detail-stat {
+  position: relative;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #16272a 0%, #0f1c1f 60%, #0b1518 100%);
+  transition: background-color 0.25s;
+}
+
+.detail-stat-top {
+  position: absolute;
+  left: 11px;
+  top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-stat-num {
+  font-size: 31px;
+  line-height: 36px;
+  color: #f4f7f7;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-stat-label {
+  position: absolute;
+  left: 15px;
+  top: 64px;
+  display: flex;
+  flex-direction: column;
+  font-size: 14.6px;
+  line-height: 20px;
+  color: #cbd2d1;
+  white-space: nowrap;
+}
+
+.detail-stat-2 .detail-stat-label,
+.detail-stat-3 .detail-stat-label {
+  top: 62px;
+  color: #f2f4f4;
+}
+
+.detail-stat-3 .detail-stat-label {
+  color: #cbd2d1;
+}
+
+.detail-ri {
+  position: absolute;
+  left: 24px;
+  top: 704px;
+  width: 460px;
+}
+
+.detail-ri h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 2px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #f3f5f5;
+}
+
+.detail-ri-card {
+  height: 95px;
+  margin-top: 15px;
+  padding: 18px 16px 0;
+  border-radius: 12px;
+  background: #121c1f;
+}
+
+.detail-ri-title {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #f4f6f6;
+}
+
+.detail-ri-body {
+  margin-top: 7px;
+  font-size: 14.6px;
+  line-height: 20px;
+  color: #b0b8b8;
+}

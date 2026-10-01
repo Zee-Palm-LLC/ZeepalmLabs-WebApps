@@ -1,0 +1,1648 @@
+{
+ "nodes": [
+  {
+   "id": "C",
+   "kind": "constitution",
+   "x": 786.0,
+   "y": 532.0,
+   "label": "Constitution",
+   "pct": 47,
+   "year": 2017
+  },
+  {
+   "id": "sport",
+   "kind": "entity",
+   "x": 1034.9,
+   "y": 117.2,
+   "label": "Sport",
+   "pct": 24,
+   "year": 2016
+  },
+  {
+   "id": "gov",
+   "kind": "entity",
+   "x": 542.9,
+   "y": 193.9,
+   "label": "Government affairs",
+   "pct": 31,
+   "year": 2020
+  },
+  {
+   "id": "env",
+   "kind": "entity",
+   "x": 823.0,
+   "y": 208.1,
+   "label": "Environment and na\u2026",
+   "pct": 17,
+   "year": 2019
+  },
+  {
+   "id": "eco",
+   "kind": "entity",
+   "x": 1242.7,
+   "y": 292.7,
+   "label": "Economy and Busin\u2026",
+   "pct": 15,
+   "year": 2019
+  },
+  {
+   "id": "energy",
+   "kind": "entity",
+   "x": 501.9,
+   "y": 433.1,
+   "label": "Energy, transport an\u2026",
+   "pct": 38,
+   "year": 2018
+  },
+  {
+   "id": "security",
+   "kind": "entity",
+   "x": 1360.3,
+   "y": 435.1,
+   "label": "Security and safety",
+   "pct": 23,
+   "year": 2017
+  },
+  {
+   "id": "health",
+   "kind": "entity",
+   "x": 1090.0,
+   "y": 592.8,
+   "label": "Healthcare",
+   "pct": 11,
+   "year": 2024
+  },
+  {
+   "id": "edu",
+   "kind": "entity",
+   "x": 1225.0,
+   "y": 711.0,
+   "label": "Education",
+   "pct": 25,
+   "year": 2017
+  },
+  {
+   "id": "culture",
+   "kind": "entity",
+   "x": 463.9,
+   "y": 730.1,
+   "label": "Culture and media",
+   "pct": 22,
+   "year": 2022
+  },
+  {
+   "id": "family",
+   "kind": "entity",
+   "x": 1329.9,
+   "y": 823.8,
+   "label": "Family and commun\u2026",
+   "pct": 33,
+   "year": 2016
+  },
+  {
+   "id": "justice",
+   "kind": "entity",
+   "x": 729.4,
+   "y": 915.2,
+   "label": "Justice and Judiciary",
+   "pct": 13,
+   "year": 2016
+  },
+  {
+   "id": "L1",
+   "kind": "legislation",
+   "x": 558.1,
+   "y": 116.5,
+   "year": 2017
+  },
+  {
+   "id": "L2",
+   "kind": "legislation",
+   "x": 429.0,
+   "y": 245.6,
+   "year": 2019
+  },
+  {
+   "id": "L3",
+   "kind": "legislation",
+   "x": 1211.3,
+   "y": 360.7,
+   "year": 2019
+  },
+  {
+   "id": "L4",
+   "kind": "legislation",
+   "x": 729.3,
+   "y": 361.5,
+   "year": 2024
+  },
+  {
+   "id": "L5",
+   "kind": "legislation",
+   "x": 1431.0,
+   "y": 366.0,
+   "year": 2016
+  },
+  {
+   "id": "L6",
+   "kind": "legislation",
+   "x": 415.2,
+   "y": 368.6,
+   "year": 2024
+  },
+  {
+   "id": "L7",
+   "kind": "legislation",
+   "x": 752.1,
+   "y": 424.3,
+   "year": 2019
+  },
+  {
+   "id": "L8",
+   "kind": "legislation",
+   "x": 293.3,
+   "y": 437.5,
+   "year": 2024
+  },
+  {
+   "id": "L9",
+   "kind": "legislation",
+   "x": 444.0,
+   "y": 505.5,
+   "year": 2022
+  },
+  {
+   "id": "L10",
+   "kind": "legislation",
+   "x": 645.5,
+   "y": 527.5,
+   "year": 2019
+  },
+  {
+   "id": "L11",
+   "kind": "legislation",
+   "x": 1089.5,
+   "y": 536.9,
+   "year": 2023
+  },
+  {
+   "id": "L12",
+   "kind": "legislation",
+   "x": 703.1,
+   "y": 604.6,
+   "year": 2020
+  },
+  {
+   "id": "L13",
+   "kind": "legislation",
+   "x": 533.3,
+   "y": 615.5,
+   "year": 2016
+  },
+  {
+   "id": "L14",
+   "kind": "legislation",
+   "x": 267.0,
+   "y": 616.0,
+   "year": 2018
+  },
+  {
+   "id": "L15",
+   "kind": "legislation",
+   "x": 441.1,
+   "y": 662.6,
+   "year": 2022
+  },
+  {
+   "id": "L16",
+   "kind": "legislation",
+   "x": 230.1,
+   "y": 799.6,
+   "year": 2021
+  },
+  {
+   "id": "L17",
+   "kind": "legislation",
+   "x": 767.0,
+   "y": 860.5,
+   "year": 2020
+  },
+  {
+   "id": "L18",
+   "kind": "legislation",
+   "x": 638.1,
+   "y": 925.5,
+   "year": 2018
+  },
+  {
+   "id": "s_top36",
+   "kind": "service",
+   "x": 721.0,
+   "y": 89.0,
+   "num": 36,
+   "year": 2019
+  },
+  {
+   "id": "s0",
+   "kind": "service",
+   "x": 892.3,
+   "y": 101.7,
+   "num": 18,
+   "year": 2021
+  },
+  {
+   "id": "s4",
+   "kind": "service",
+   "x": 785.8,
+   "y": 116.7,
+   "num": 2,
+   "year": 2017
+  },
+  {
+   "id": "s9",
+   "kind": "service",
+   "x": 743.4,
+   "y": 160.5,
+   "num": 25,
+   "year": 2017
+  },
+  {
+   "id": "s10",
+   "kind": "service",
+   "x": 1163.2,
+   "y": 176.5,
+   "num": 34,
+   "year": 2022
+  },
+  {
+   "id": "s13",
+   "kind": "service",
+   "x": 405.9,
+   "y": 195.6,
+   "num": 35,
+   "year": 2017
+  },
+  {
+   "id": "s15",
+   "kind": "service",
+   "x": 709.1,
+   "y": 203.6,
+   "num": 20,
+   "year": 2021
+  },
+  {
+   "id": "s24",
+   "kind": "service",
+   "x": 510.4,
+   "y": 246.6,
+   "num": 36,
+   "year": 2021
+  },
+  {
+   "id": "s25",
+   "kind": "service",
+   "x": 1462.1,
+   "y": 251.6,
+   "num": 19,
+   "year": 2020
+  },
+  {
+   "id": "s27",
+   "kind": "service",
+   "x": 572.1,
+   "y": 269.5,
+   "num": 27,
+   "year": 2016
+  },
+  {
+   "id": "s28",
+   "kind": "service",
+   "x": 1507.2,
+   "y": 285.5,
+   "num": 24,
+   "year": 2023
+  },
+  {
+   "id": "s33",
+   "kind": "service",
+   "x": 1153.1,
+   "y": 331.0,
+   "num": 3,
+   "year": 2024
+  },
+  {
+   "id": "s44",
+   "kind": "service",
+   "x": 503.2,
+   "y": 389.8,
+   "num": 19,
+   "year": 2017
+  },
+  {
+   "id": "s46",
+   "kind": "service",
+   "x": 304.7,
+   "y": 393.5,
+   "num": 29,
+   "year": 2022
+  },
+  {
+   "id": "s49",
+   "kind": "service",
+   "x": 665.6,
+   "y": 417.5,
+   "num": 16,
+   "year": 2017
+  },
+  {
+   "id": "s64",
+   "kind": "service",
+   "x": 395.7,
+   "y": 507.6,
+   "num": 16,
+   "year": 2024
+  },
+  {
+   "id": "s73",
+   "kind": "service",
+   "x": 679.5,
+   "y": 545.4,
+   "num": 21,
+   "year": 2020
+  },
+  {
+   "id": "s81",
+   "kind": "service",
+   "x": 567.9,
+   "y": 613.5,
+   "num": 31,
+   "year": 2021
+  },
+  {
+   "id": "s84",
+   "kind": "service",
+   "x": 738.6,
+   "y": 620.5,
+   "num": 23,
+   "year": 2019
+  },
+  {
+   "id": "s92",
+   "kind": "service",
+   "x": 1283.2,
+   "y": 662.7,
+   "num": 12,
+   "year": 2017
+  },
+  {
+   "id": "s96",
+   "kind": "service",
+   "x": 819.1,
+   "y": 681.6,
+   "num": 31,
+   "year": 2016
+  },
+  {
+   "id": "s99",
+   "kind": "service",
+   "x": 1050.0,
+   "y": 720.5,
+   "num": 40,
+   "year": 2019
+  },
+  {
+   "id": "s100",
+   "kind": "service",
+   "x": 183.0,
+   "y": 723.0,
+   "num": 33,
+   "year": 2020
+  },
+  {
+   "id": "s107",
+   "kind": "service",
+   "x": 1111.6,
+   "y": 784.7,
+   "num": 30,
+   "year": 2017
+  },
+  {
+   "id": "s112",
+   "kind": "service",
+   "x": 790.3,
+   "y": 803.6,
+   "num": 9,
+   "year": 2019
+  },
+  {
+   "id": "s114",
+   "kind": "service",
+   "x": 724.7,
+   "y": 822.7,
+   "num": 36,
+   "year": 2017
+  },
+  {
+   "id": "s116",
+   "kind": "service",
+   "x": 830.1,
+   "y": 832.6,
+   "num": 13,
+   "year": 2022
+  },
+  {
+   "id": "s117",
+   "kind": "service",
+   "x": 217.1,
+   "y": 838.6,
+   "num": 26,
+   "year": 2020
+  },
+  {
+   "id": "s119",
+   "kind": "service",
+   "x": 1277.3,
+   "y": 857.5,
+   "num": 35,
+   "year": 2023
+  },
+  {
+   "id": "s121",
+   "kind": "service",
+   "x": 1250.0,
+   "y": 882.9,
+   "num": 27,
+   "year": 2021
+  },
+  {
+   "id": "s125",
+   "kind": "service",
+   "x": 1405.4,
+   "y": 922.7,
+   "num": 27,
+   "year": 2018
+  },
+  {
+   "id": "s126",
+   "kind": "service",
+   "x": 593.7,
+   "y": 924.1,
+   "num": 29,
+   "year": 2021
+  },
+  {
+   "id": "s128",
+   "kind": "service",
+   "x": 1147.0,
+   "y": 973.4,
+   "num": 4,
+   "year": 2021
+  },
+  {
+   "id": "s129",
+   "kind": "service",
+   "x": 1246.8,
+   "y": 974.8,
+   "num": 27,
+   "year": 2019
+  },
+  {
+   "id": "r_11",
+   "kind": "regulation",
+   "x": 473.5,
+   "y": 203.5,
+   "num": 11,
+   "year": 2020
+  },
+  {
+   "id": "r_8a",
+   "kind": "regulation",
+   "x": 246.5,
+   "y": 434.0,
+   "num": 8,
+   "year": 2017
+  },
+  {
+   "id": "r_17a",
+   "kind": "regulation",
+   "x": 556.0,
+   "y": 495.0,
+   "num": 17,
+   "year": 2018
+  },
+  {
+   "id": "r_13a",
+   "kind": "regulation",
+   "x": 702.5,
+   "y": 334.0,
+   "num": 13,
+   "year": 2024
+  },
+  {
+   "id": "r_10",
+   "kind": "regulation",
+   "x": 690.0,
+   "y": 446.5,
+   "num": 10,
+   "year": 2019
+  },
+  {
+   "id": "r_15",
+   "kind": "regulation",
+   "x": 744.5,
+   "y": 198.0,
+   "num": 15,
+   "year": 2018
+  },
+  {
+   "id": "r_20top",
+   "kind": "regulation",
+   "x": 765.2,
+   "y": 111.2,
+   "num": 20,
+   "year": 2023
+  },
+  {
+   "id": "r_5top",
+   "kind": "regulation",
+   "x": 814.0,
+   "y": 87.5,
+   "num": 5,
+   "year": 2022
+  },
+  {
+   "id": "r_6a",
+   "kind": "regulation",
+   "x": 1215.4,
+   "y": 139.6,
+   "num": 6,
+   "year": 2020
+  },
+  {
+   "id": "r_17b",
+   "kind": "regulation",
+   "x": 885.5,
+   "y": 285.0,
+   "num": 17,
+   "year": 2024
+  },
+  {
+   "id": "r_19",
+   "kind": "regulation",
+   "x": 842.0,
+   "y": 403.5,
+   "num": 19,
+   "year": 2019
+  },
+  {
+   "id": "r_8b",
+   "kind": "regulation",
+   "x": 869.5,
+   "y": 390.0,
+   "num": 8,
+   "year": 2021
+  },
+  {
+   "id": "r_12",
+   "kind": "regulation",
+   "x": 870.0,
+   "y": 471.5,
+   "num": 12,
+   "year": 2016
+  },
+  {
+   "id": "r_1",
+   "kind": "regulation",
+   "x": 900.9,
+   "y": 463.2,
+   "num": 1,
+   "year": 2019
+  },
+  {
+   "id": "r_3",
+   "kind": "regulation",
+   "x": 1506.5,
+   "y": 238.0,
+   "num": 3,
+   "year": 2016
+  },
+  {
+   "id": "r_6b",
+   "kind": "regulation",
+   "x": 1308.0,
+   "y": 458.0,
+   "num": 6,
+   "year": 2021
+  },
+  {
+   "id": "r_5a",
+   "kind": "regulation",
+   "x": 1162.5,
+   "y": 520.0,
+   "num": 5,
+   "year": 2022
+  },
+  {
+   "id": "r_5b",
+   "kind": "regulation",
+   "x": 1436.4,
+   "y": 534.3,
+   "num": 5,
+   "year": 2020
+  },
+  {
+   "id": "r_2a",
+   "kind": "regulation",
+   "x": 256.5,
+   "y": 579.0,
+   "num": 2,
+   "year": 2017
+  },
+  {
+   "id": "r_5c",
+   "kind": "regulation",
+   "x": 208.0,
+   "y": 710.0,
+   "num": 5,
+   "year": 2019
+  },
+  {
+   "id": "r_6c",
+   "kind": "regulation",
+   "x": 660.0,
+   "y": 631.0,
+   "num": 6,
+   "year": 2021
+  },
+  {
+   "id": "r_13b",
+   "kind": "regulation",
+   "x": 695.2,
+   "y": 652.6,
+   "num": 13,
+   "year": 2019
+  },
+  {
+   "id": "r_4",
+   "kind": "regulation",
+   "x": 792.0,
+   "y": 689.0,
+   "num": 4,
+   "year": 2023
+  },
+  {
+   "id": "r_5d",
+   "kind": "regulation",
+   "x": 648.5,
+   "y": 896.0,
+   "num": 5,
+   "year": 2022
+  },
+  {
+   "id": "r_7a",
+   "kind": "regulation",
+   "x": 707.5,
+   "y": 984.0,
+   "num": 7,
+   "year": 2023
+  },
+  {
+   "id": "r_18",
+   "kind": "regulation",
+   "x": 1118.6,
+   "y": 651.6,
+   "num": 18,
+   "year": 2018
+  },
+  {
+   "id": "r_8c",
+   "kind": "regulation",
+   "x": 1152.5,
+   "y": 635.0,
+   "num": 8,
+   "year": 2020
+  },
+  {
+   "id": "r_11b",
+   "kind": "regulation",
+   "x": 1087.9,
+   "y": 679.5,
+   "num": 11,
+   "year": 2018
+  },
+  {
+   "id": "r_2b",
+   "kind": "regulation",
+   "x": 1346.4,
+   "y": 656.3,
+   "num": 2,
+   "year": 2019
+  },
+  {
+   "id": "r_7b",
+   "kind": "regulation",
+   "x": 873.5,
+   "y": 687.0,
+   "num": 7,
+   "year": 2024
+  },
+  {
+   "id": "r_20b",
+   "kind": "regulation",
+   "x": 920.0,
+   "y": 700.0,
+   "num": 20,
+   "year": 2024
+  },
+  {
+   "id": "r_5e",
+   "kind": "regulation",
+   "x": 893.3,
+   "y": 762.7,
+   "num": 5,
+   "year": 2020
+  },
+  {
+   "id": "r_20c",
+   "kind": "regulation",
+   "x": 1154.0,
+   "y": 778.0,
+   "num": 20,
+   "year": 2022
+  },
+  {
+   "id": "r_7c",
+   "kind": "regulation",
+   "x": 1426.4,
+   "y": 771.4,
+   "num": 7,
+   "year": 2022
+  },
+  {
+   "id": "r_8d",
+   "kind": "regulation",
+   "x": 1201.5,
+   "y": 898.5,
+   "num": 8,
+   "year": 2021
+  },
+  {
+   "id": "r_8e",
+   "kind": "regulation",
+   "x": 1209.5,
+   "y": 926.5,
+   "num": 8,
+   "year": 2019
+  },
+  {
+   "id": "r_8f",
+   "kind": "regulation",
+   "x": 1358.5,
+   "y": 916.0,
+   "num": 8,
+   "year": 2018
+  },
+  {
+   "id": "r_16",
+   "kind": "regulation",
+   "x": 1118.5,
+   "y": 945.0,
+   "num": 16,
+   "year": 2024
+  },
+  {
+   "id": "r_8g",
+   "kind": "regulation",
+   "x": 1281.5,
+   "y": 956.0,
+   "num": 8,
+   "year": 2023
+  },
+  {
+   "id": "r_glow1",
+   "kind": "regulation",
+   "x": 1036.9,
+   "y": 244.8,
+   "glow": true,
+   "year": 2017
+  },
+  {
+   "id": "i_3",
+   "kind": "info",
+   "x": 472.5,
+   "y": 148.5,
+   "tint": "pink",
+   "num": 3,
+   "year": 2016
+  },
+  {
+   "id": "i_39",
+   "kind": "info",
+   "x": 606.5,
+   "y": 145.5,
+   "tint": "cyan",
+   "num": 39,
+   "year": 2017
+  },
+  {
+   "id": "i_5",
+   "kind": "info",
+   "x": 1036.7,
+   "y": 200.8,
+   "tint": "cyan",
+   "num": 5,
+   "year": 2018
+  },
+  {
+   "id": "i_1",
+   "kind": "info",
+   "x": 1223.5,
+   "y": 224.0,
+   "tint": "lilac",
+   "num": 1,
+   "year": 2018
+  },
+  {
+   "id": "i_12",
+   "kind": "info",
+   "x": 1245.0,
+   "y": 230.0,
+   "tint": "lilac",
+   "num": 12,
+   "year": 2022
+  },
+  {
+   "id": "i_glowA",
+   "kind": "info",
+   "x": 1270.3,
+   "y": 206.3,
+   "tint": "glow",
+   "year": 2017
+  },
+  {
+   "id": "i_8a",
+   "kind": "info",
+   "x": 1255.0,
+   "y": 363.0,
+   "tint": "lilac",
+   "num": 8,
+   "year": 2022
+  },
+  {
+   "id": "i_glowB",
+   "kind": "info",
+   "x": 1391.0,
+   "y": 525.0,
+   "tint": "glow",
+   "year": 2022
+  },
+  {
+   "id": "i_8b",
+   "kind": "info",
+   "x": 231.5,
+   "y": 629.0,
+   "tint": "pink",
+   "num": 8,
+   "year": 2023
+  },
+  {
+   "id": "i_9",
+   "kind": "info",
+   "x": 291.0,
+   "y": 593.0,
+   "tint": "pink",
+   "num": 9,
+   "year": 2024
+  },
+  {
+   "id": "i_18",
+   "kind": "info",
+   "x": 244.1,
+   "y": 740.1,
+   "tint": "glow",
+   "num": 18,
+   "year": 2020
+  },
+  {
+   "id": "i_20",
+   "kind": "info",
+   "x": 333.6,
+   "y": 798.2,
+   "tint": "cyan",
+   "num": 20,
+   "year": 2024
+  },
+  {
+   "id": "i_10",
+   "kind": "info",
+   "x": 347.5,
+   "y": 807.5,
+   "tint": "pink",
+   "num": 10,
+   "year": 2016
+  },
+  {
+   "id": "i_8c",
+   "kind": "info",
+   "x": 525.0,
+   "y": 900.0,
+   "tint": "pink",
+   "num": 8,
+   "year": 2017
+  },
+  {
+   "id": "i_8d",
+   "kind": "info",
+   "x": 939.5,
+   "y": 723.3,
+   "tint": "cyan",
+   "num": 8,
+   "year": 2024
+  },
+  {
+   "id": "i_11",
+   "kind": "info",
+   "x": 1360.4,
+   "y": 765.9,
+   "tint": "cyan",
+   "num": 11,
+   "year": 2020
+  },
+  {
+   "id": "i_8e",
+   "kind": "info",
+   "x": 1295.5,
+   "y": 890.6,
+   "tint": "glow",
+   "num": 8,
+   "year": 2021
+  }
+ ],
+ "edges": [
+  {
+   "a": "C",
+   "b": "env",
+   "style": "B"
+  },
+  {
+   "a": "C",
+   "b": "L8",
+   "style": "B"
+  },
+  {
+   "a": "C",
+   "b": "L16",
+   "style": "B"
+  },
+  {
+   "a": "C",
+   "b": "security",
+   "style": "B"
+  },
+  {
+   "a": "C",
+   "b": "family",
+   "style": "B"
+  },
+  {
+   "a": "C",
+   "b": "justice",
+   "style": "B"
+  },
+  {
+   "a": "C",
+   "b": "culture",
+   "style": "G"
+  },
+  {
+   "a": "C",
+   "b": "gov",
+   "style": "T"
+  },
+  {
+   "a": "C",
+   "b": "sport",
+   "style": "G"
+  },
+  {
+   "a": "C",
+   "b": "s84",
+   "style": "D"
+  },
+  {
+   "a": "C",
+   "b": "health",
+   "style": "T"
+  },
+  {
+   "a": "C",
+   "b": "edu",
+   "style": "T"
+  },
+  {
+   "a": "C",
+   "b": "edu",
+   "style": "G"
+  },
+  {
+   "a": "C",
+   "b": "eco",
+   "style": "T"
+  },
+  {
+   "a": "C",
+   "b": "L7",
+   "style": "D"
+  },
+  {
+   "a": "C",
+   "b": "L12",
+   "style": "D"
+  },
+  {
+   "a": "C",
+   "b": "r_10",
+   "style": "D"
+  },
+  {
+   "a": "C",
+   "b": "s73",
+   "style": "D"
+  },
+  {
+   "a": "C",
+   "b": "r_4",
+   "style": "D"
+  },
+  {
+   "a": "C",
+   "b": "s96",
+   "style": "D"
+  },
+  {
+   "a": "C",
+   "b": "r_7b",
+   "style": "D"
+  },
+  {
+   "a": "C",
+   "b": "r_20b",
+   "style": "D"
+  },
+  {
+   "a": "C",
+   "b": "r_12",
+   "style": "D"
+  },
+  {
+   "a": "C",
+   "b": "r_19",
+   "style": "D"
+  },
+  {
+   "a": "C",
+   "b": "r_8b",
+   "style": "D"
+  },
+  {
+   "a": "C",
+   "b": "L4",
+   "style": "D"
+  },
+  {
+   "a": "L1",
+   "b": "gov",
+   "style": "D"
+  },
+  {
+   "a": "L1",
+   "b": "i_39",
+   "style": "D"
+  },
+  {
+   "a": "i_3",
+   "b": "r_11",
+   "style": "D"
+  },
+  {
+   "a": "r_11",
+   "b": "gov",
+   "style": "D"
+  },
+  {
+   "a": "s13",
+   "b": "L2",
+   "style": "D"
+  },
+  {
+   "a": "L2",
+   "b": "gov",
+   "style": "D"
+  },
+  {
+   "a": "L2",
+   "b": "s24",
+   "style": "D"
+  },
+  {
+   "a": "L2",
+   "b": "s27",
+   "style": "D"
+  },
+  {
+   "a": "s24",
+   "b": "gov",
+   "style": "D"
+  },
+  {
+   "a": "r_2a",
+   "b": "s24",
+   "style": "G"
+  },
+  {
+   "a": "L6",
+   "b": "L14",
+   "style": "T"
+  },
+  {
+   "a": "L6",
+   "b": "energy",
+   "style": "D"
+  },
+  {
+   "a": "energy",
+   "b": "s44",
+   "style": "D"
+  },
+  {
+   "a": "L8",
+   "b": "r_8a",
+   "style": "D"
+  },
+  {
+   "a": "L8",
+   "b": "s46",
+   "style": "D"
+  },
+  {
+   "a": "L8",
+   "b": "energy",
+   "style": "D"
+  },
+  {
+   "a": "energy",
+   "b": "L9",
+   "style": "D"
+  },
+  {
+   "a": "L9",
+   "b": "s64",
+   "style": "D"
+  },
+  {
+   "a": "energy",
+   "b": "L10",
+   "style": "D"
+  },
+  {
+   "a": "s49",
+   "b": "r_10",
+   "style": "D"
+  },
+  {
+   "a": "s15",
+   "b": "s49",
+   "style": "T"
+  },
+  {
+   "a": "s15",
+   "b": "r_15",
+   "style": "D"
+  },
+  {
+   "a": "r_15",
+   "b": "env",
+   "style": "D"
+  },
+  {
+   "a": "L4",
+   "b": "r_13a",
+   "style": "D"
+  },
+  {
+   "a": "L4",
+   "b": "L7",
+   "style": "D"
+  },
+  {
+   "a": "culture",
+   "b": "energy",
+   "style": "T"
+  },
+  {
+   "a": "justice",
+   "b": "energy",
+   "style": "T"
+  },
+  {
+   "a": "L14",
+   "b": "L8",
+   "style": "T"
+  },
+  {
+   "a": "r_2a",
+   "b": "L14",
+   "style": "D"
+  },
+  {
+   "a": "L14",
+   "b": "i_9",
+   "style": "D"
+  },
+  {
+   "a": "L14",
+   "b": "i_8b",
+   "style": "D"
+  },
+  {
+   "a": "L14",
+   "b": "culture",
+   "style": "D"
+  },
+  {
+   "a": "s100",
+   "b": "L14",
+   "style": "D"
+  },
+  {
+   "a": "s100",
+   "b": "L16",
+   "style": "D"
+  },
+  {
+   "a": "s100",
+   "b": "r_5c",
+   "style": "D"
+  },
+  {
+   "a": "s100",
+   "b": "i_18",
+   "style": "D"
+  },
+  {
+   "a": "s100",
+   "b": "culture",
+   "style": "D"
+  },
+  {
+   "a": "s117",
+   "b": "i_20",
+   "style": "D"
+  },
+  {
+   "a": "i_20",
+   "b": "culture",
+   "style": "D"
+  },
+  {
+   "a": "i_10",
+   "b": "L18",
+   "style": "R"
+  },
+  {
+   "a": "culture",
+   "b": "L13",
+   "style": "G"
+  },
+  {
+   "a": "culture",
+   "b": "s81",
+   "style": "G"
+  },
+  {
+   "a": "culture",
+   "b": "L15",
+   "style": "D"
+  },
+  {
+   "a": "justice",
+   "b": "culture",
+   "style": "T"
+  },
+  {
+   "a": "s126",
+   "b": "L18",
+   "style": "D"
+  },
+  {
+   "a": "L18",
+   "b": "justice",
+   "style": "D"
+  },
+  {
+   "a": "r_5d",
+   "b": "justice",
+   "style": "D"
+  },
+  {
+   "a": "i_8c",
+   "b": "justice",
+   "style": "D"
+  },
+  {
+   "a": "justice",
+   "b": "r_7a",
+   "style": "D"
+  },
+  {
+   "a": "s114",
+   "b": "justice",
+   "style": "D"
+  },
+  {
+   "a": "L17",
+   "b": "justice",
+   "style": "D"
+  },
+  {
+   "a": "L17",
+   "b": "s112",
+   "style": "D"
+  },
+  {
+   "a": "L17",
+   "b": "s116",
+   "style": "D"
+  },
+  {
+   "a": "L12",
+   "b": "r_6c",
+   "style": "D"
+  },
+  {
+   "a": "r_6c",
+   "b": "r_13b",
+   "style": "D"
+  },
+  {
+   "a": "health",
+   "b": "L11",
+   "style": "D"
+  },
+  {
+   "a": "health",
+   "b": "r_5a",
+   "style": "D"
+  },
+  {
+   "a": "health",
+   "b": "r_18",
+   "style": "D"
+  },
+  {
+   "a": "r_18",
+   "b": "r_8c",
+   "style": "D"
+  },
+  {
+   "a": "health",
+   "b": "s99",
+   "style": "D"
+  },
+  {
+   "a": "r_11b",
+   "b": "r_18",
+   "style": "D"
+  },
+  {
+   "a": "r_7b",
+   "b": "r_5e",
+   "style": "D"
+  },
+  {
+   "a": "r_5e",
+   "b": "i_8d",
+   "style": "D"
+  },
+  {
+   "a": "edu",
+   "b": "s92",
+   "style": "D"
+  },
+  {
+   "a": "s92",
+   "b": "r_2b",
+   "style": "D"
+  },
+  {
+   "a": "edu",
+   "b": "r_20c",
+   "style": "D"
+  },
+  {
+   "a": "r_20c",
+   "b": "s107",
+   "style": "D"
+  },
+  {
+   "a": "family",
+   "b": "i_11",
+   "style": "D"
+  },
+  {
+   "a": "i_11",
+   "b": "r_7c",
+   "style": "D"
+  },
+  {
+   "a": "family",
+   "b": "s119",
+   "style": "D"
+  },
+  {
+   "a": "family",
+   "b": "i_8e",
+   "style": "D"
+  },
+  {
+   "a": "i_8e",
+   "b": "s121",
+   "style": "D"
+  },
+  {
+   "a": "s121",
+   "b": "r_8d",
+   "style": "D"
+  },
+  {
+   "a": "i_8e",
+   "b": "r_8e",
+   "style": "D"
+  },
+  {
+   "a": "r_8e",
+   "b": "s128",
+   "style": "D"
+  },
+  {
+   "a": "s128",
+   "b": "r_16",
+   "style": "D"
+  },
+  {
+   "a": "family",
+   "b": "r_8g",
+   "style": "D"
+  },
+  {
+   "a": "r_8g",
+   "b": "s129",
+   "style": "D"
+  },
+  {
+   "a": "family",
+   "b": "r_8f",
+   "style": "D"
+  },
+  {
+   "a": "r_8f",
+   "b": "s125",
+   "style": "D"
+  },
+  {
+   "a": "security",
+   "b": "L5",
+   "style": "D"
+  },
+  {
+   "a": "L5",
+   "b": "s25",
+   "style": "D"
+  },
+  {
+   "a": "L5",
+   "b": "r_3",
+   "style": "D"
+  },
+  {
+   "a": "L5",
+   "b": "s28",
+   "style": "D"
+  },
+  {
+   "a": "security",
+   "b": "r_6b",
+   "style": "D"
+  },
+  {
+   "a": "security",
+   "b": "i_glowB",
+   "style": "D"
+  },
+  {
+   "a": "security",
+   "b": "r_5b",
+   "style": "D"
+  },
+  {
+   "a": "eco",
+   "b": "L3",
+   "style": "D"
+  },
+  {
+   "a": "eco",
+   "b": "i_8a",
+   "style": "D"
+  },
+  {
+   "a": "eco",
+   "b": "s33",
+   "style": "D"
+  },
+  {
+   "a": "eco",
+   "b": "i_12",
+   "style": "D"
+  },
+  {
+   "a": "i_12",
+   "b": "i_1",
+   "style": "D"
+  },
+  {
+   "a": "i_12",
+   "b": "i_glowA",
+   "style": "D"
+  },
+  {
+   "a": "sport",
+   "b": "i_5",
+   "style": "D"
+  },
+  {
+   "a": "i_5",
+   "b": "r_glow1",
+   "style": "D"
+  },
+  {
+   "a": "sport",
+   "b": "s10",
+   "style": "D"
+  },
+  {
+   "a": "sport",
+   "b": "r_6a",
+   "style": "D"
+  },
+  {
+   "a": "env",
+   "b": "s0",
+   "style": "D"
+  },
+  {
+   "a": "env",
+   "b": "s4",
+   "style": "D"
+  },
+  {
+   "a": "env",
+   "b": "s9",
+   "style": "D"
+  },
+  {
+   "a": "env",
+   "b": "r_5top",
+   "style": "D"
+  },
+  {
+   "a": "env",
+   "b": "r_17b",
+   "style": "D"
+  },
+  {
+   "a": "s_top36",
+   "b": "r_20top",
+   "style": "D"
+  },
+  {
+   "a": "r_20top",
+   "b": "s4",
+   "style": "D"
+  },
+  {
+   "a": "r_12",
+   "b": "r_1",
+   "style": "D"
+  },
+  {
+   "a": "r_12",
+   "b": "r_19",
+   "style": "D"
+  },
+  {
+   "a": "r_19",
+   "b": "r_8b",
+   "style": "D"
+  }
+ ]
+}
