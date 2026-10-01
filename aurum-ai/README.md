@@ -1,5 +1,7 @@
 # Aurum AI
 
+Live: [zeepalm-aurum.vercel.app](https://zeepalm-aurum.vercel.app)
+
 An AI wealth dashboard. Your portfolio sits at the centre of a live network, with sectors and holdings around it. Prices tick in real time, you can place paper trades, and an in-browser AI analyst answers questions about your money.
 
 ## Design credit
@@ -82,3 +84,7 @@ npm run build
 ```
 
 The build goes to `dist/` and runs on any static host (for Vercel, use the Vite preset).
+
+## Deploy
+
+The site is hosted on Vercel as the project `aurum-ai`, with root directory `aurum-ai`, the Vite preset and output `dist`. The project is not linked to git, so a push does not deploy on its own. After pushing, start a new production deployment from the `main` branch of this repo in Vercel.
