@@ -2,7 +2,7 @@
 
 Live: [zeepalm-fitmove.vercel.app](https://zeepalm-fitmove.vercel.app)
 
-A fitness dashboard built in React, matched pixel for pixel to a Dribbble design. When it loads, the page builds itself in order, like a short story of Wingman's day. It is also fully interactive.
+A fitness app built in React, matched pixel for pixel to a Dribbble design. It has eleven pages, all interactive. When the dashboard first loads, it builds itself in order, like a short story of Wingman's day. It also works on tablets and phones.
 
 ## Design credit
 
@@ -60,11 +60,33 @@ Some motion keeps going afterwards:
 - **Classes:** join a class from its level pill.
 - **Meals:** double-click a meal card to like it.
 
+## Pages
+
+Each page has its own address, and moving between pages plays a short exit and entry animation.
+
+| Page | Address | What you can do |
+| --- | --- | --- |
+| Dashboard | `/` | Everything listed above. |
+| Statistics | `/statistics` | Hover the workout activity and calorie bars. Click a goal to log progress. |
+| Exercises | `/exercises` | Sort the table by any column, filter by status, and mark exercises Completed or Upcoming. |
+| Schedule | `/schedule` | Filter the week by category, switch between Day, Week and Month, and select a class to see its details. |
+| Class Details | `/classes` | Play the class video, enrol, bookmark it, and tick exercises off. |
+| Trainers | `/trainers` | Search and filter 14 trainers, then open a trainer's profile. |
+| Trainer Details | `/trainers/:id` | Hover the training curve, browse the calendar and read reviews. |
+| Messages | `/messages` | Switch chats and send a message. The trainer types a reply. |
+| Workout Tracker | `/workout-tracker` | Pick a recent workout to redraw its route and stats, and zoom the map. |
+| Meal Plan | `/meal-plan` | Switch meal tabs, search, add meals to the plan and open a recipe. |
+| Meal Details | `/meal-plan/:id` | Change servings to rescale the ingredients, fold sections, and tick steps off. |
+
+## Phones and tablets
+
+Below 1100 px wide, the sidebar becomes a top bar with a menu drawer. Cards are rearranged into a single flow sized for the screen (`src/reflow.js`): a 860 px canvas on tablets and a 560 px canvas on phones, scaled to fit. Nothing scrolls sideways.
+
 ## How it is built
 
 - **Stack:** React 18, Vite, GSAP and the Figtree font.
 - **Canvas:**
-  - The layout is a fixed 1440 × 1290 canvas, scaled to the window width.
+  - On desktop each page is a fixed 1440 px wide canvas, scaled to the window width.
   - Every element is placed by measuring the 4100 px source shot. Text is positioned by its baseline.
 - **Corners:** cards use Figma-style smooth corners, generated as SVG paths in `src/ui/squircle.js`.
 - **Icons:** icon shapes are vector outlines traced from the source shot (`src/ui/glyphs.js`).
@@ -82,4 +104,4 @@ npm run dev
 
 ## Deploy
 
-The project is deployed on Vercel with Root Directory set to `fitmove` and the Vite preset. To redeploy, deploy the latest commit of `main`.
+The project is deployed on Vercel with Root Directory set to `fitmove` and the Vite preset. `vercel.json` sends every page address to `index.html`, so deep links work. To redeploy, deploy the latest commit of `main`.

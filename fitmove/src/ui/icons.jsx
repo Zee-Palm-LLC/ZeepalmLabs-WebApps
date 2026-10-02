@@ -3,6 +3,7 @@ import {
   ArrowLeft01Icon,
   ArrowRight01Icon,
   ArrowUp01Icon,
+  Cancel01Icon,
   Calendar03Icon,
   Calendar04Icon,
   Cardiogram02Icon,
@@ -23,6 +24,43 @@ import {
   UserCircleIcon,
   WorkoutRunIcon,
   YoutubeIcon,
+  SentIcon,
+  Share08Icon,
+  MinusSignIcon,
+  Call02Icon,
+  Video01Icon,
+  SmileIcon,
+  Attachment01Icon,
+  SidebarRightIcon,
+  Mail01Icon,
+  Home01Icon,
+  File02Icon,
+  RepeatIcon,
+  Location01Icon,
+  Bookmark02Icon,
+  PlayIcon,
+  ChickenThighsIcon,
+  Bread04Icon,
+  FilterHorizontalIcon,
+  DropletIcon,
+  FilterIcon,
+  StarIcon,
+  SpoonAndForkIcon,
+  Pen01Icon,
+  Pot02Icon,
+  LeftToRightListNumberIcon,
+  HeartCheckIcon,
+  WorkoutSquatsIcon,
+  EquipmentBenchPressIcon,
+  PushUpBarIcon,
+  Bicycle01Icon,
+  EquipmentWeightliftingIcon,
+  WorkoutKickingIcon,
+  WorkoutStretchingIcon,
+  Yoga01Icon,
+  UnfoldMoreIcon,
+  Dumbbell01Icon,
+  DashboardSpeed02Icon,
 } from '@hugeicons/core-free-icons'
 import { GLYPHS } from './glyphs.js'
 import { useOrigin } from './prim.jsx'
@@ -78,6 +116,7 @@ const custom = {
   star: [ring(12, 4.6, 2.1), line('M3.5 9.4H20.5L15.2 13.4L17.2 20.6L12 16.9L6.8 20.6L8.8 13.4Z')],
   yoga: [ring(12, 4.6, 2.1), line('M3.5 10.2H20.5'), line('M12 10.2V14'), line('M12 14L6.6 20.5'), line('M12 14L16 16.6V20.8')],
   facebook: [ring(12, 12, 9.75), line('M12.5 21.75V12.6C12.5 10.3 13.3 9 15.6 9H16.5'), line('M10 13.2H15.5')],
+  starfill: [['path', { d: 'M12 2.8L14.75 8.4L20.9 9.3L16.45 13.65L17.5 19.8L12 16.9L6.5 19.8L7.55 13.65L3.1 9.3L9.25 8.4Z', fill: '#FFD43B', stroke: '#FFD43B', strokeWidth: '1.2', strokeLinejoin: 'round' }]],
   flag: [['path', { d: 'M5 21V4.5M5 4.5C7.5 3.2 9.3 3.6 11.2 4.6C13.2 5.7 15.3 6 19 4.6V13C15.3 14.4 13.2 14.1 11.2 13C9.3 12 7.5 11.6 5 12.9', fill: 'currentColor', stroke: 'currentColor', strokeWidth: '1.5', strokeLinejoin: 'round', strokeLinecap: 'round' }]],
 }
 
@@ -106,6 +145,44 @@ const hi = {
   youtube: YoutubeIcon,
   linkedin: Linkedin01Icon,
   heart: Cardiogram02Icon,
+  close: Cancel01Icon,
+  speed: DashboardSpeed02Icon,
+  squat: WorkoutSquatsIcon,
+  bench: EquipmentBenchPressIcon,
+  pullup: PushUpBarIcon,
+  bike: Bicycle01Icon,
+  lift: EquipmentWeightliftingIcon,
+  kick: WorkoutKickingIcon,
+  stretch: WorkoutStretchingIcon,
+  yogapose: Yoga01Icon,
+  unfold: UnfoldMoreIcon,
+  dumbbellh: Dumbbell01Icon,
+  fork: SpoonAndForkIcon,
+  pen: Pen01Icon,
+  pot: Pot02Icon,
+  listnum: LeftToRightListNumberIcon,
+  heartcheck: HeartCheckIcon,
+  send: SentIcon,
+  share: Share08Icon,
+  minus: MinusSignIcon,
+  call: Call02Icon,
+  videocam: Video01Icon,
+  smile: SmileIcon,
+  attach: Attachment01Icon,
+  panel: SidebarRightIcon,
+  mail: Mail01Icon,
+  home: Home01Icon,
+  file: File02Icon,
+  repeat: RepeatIcon,
+  pin: Location01Icon,
+  bookmark: Bookmark02Icon,
+  play: PlayIcon,
+  protein: ChickenThighsIcon,
+  bread: Bread04Icon,
+  sliders: FilterHorizontalIcon,
+  drop: DropletIcon,
+  filter: FilterIcon,
+  starline: StarIcon,
 }
 
 const ICONS = { ...hi, ...custom }
@@ -156,17 +233,19 @@ export function LogoMark({ size = 30, mono, className = '', style }) {
   )
 }
 
-export function Glyph({ n, x, y, dx = 0, dy = 0, ox, oy, className = '', style, ...rest }) {
+export function Glyph({ n, x, y, cx, cy, k = 1, dx = 0, dy = 0, ox, oy, ra, className = '', style, ...rest }) {
   const o = useOrigin()
   const g = GLYPHS[n]
   if (!g) return null
-  const left = (x ?? g.x) + dx - (ox ?? o.x)
-  const top = (y ?? g.y) + dy - (oy ?? o.y)
+  const gx = cx != null ? cx - (g.w * k) / 2 : x ?? g.x
+  const gy = cy != null ? cy - (g.h * k) / 2 : y ?? g.y
+  const left = gx + dx - (ox ?? o.x) + (ra ? o.dw : 0)
+  const top = gy + dy - (oy ?? o.y)
   return (
     <svg
       className={`glyph ${className}`}
-      width={g.w}
-      height={g.h}
+      width={g.w * k}
+      height={g.h * k}
       viewBox={`0 0 ${g.w} ${g.h}`}
       style={{ left, top, ...style }}
       aria-hidden="true"

@@ -51,6 +51,10 @@ const one = (root, sel) => root.querySelector(sel)
 
 export function playIntro(root) {
   const tl = gsap.timeline({ defaults: { ease: 'expo.out' } })
+  const ft = (t, from, to, pos) => {
+    const list = Array.isArray(t) ? t.filter(Boolean) : t
+    return list && list.length !== 0 ? tl.fromTo(list, from, to, pos) : tl
+  }
   const all = (sel) => q(root, sel)
 
   const sidebar = one(root, '[data-s="sidebar"]')
@@ -76,7 +80,7 @@ export function playIntro(root) {
   const logout = one(root, '[data-s="logout"]')
 
   const cardsIn = (els, at, opts = {}) =>
-    tl.fromTo(
+    ft(
       els,
       { autoAlpha: 0, y: opts.y ?? 34, scale: opts.scale ?? 0.965, filter: 'blur(6px)' },
       { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: opts.d ?? 1.15, stagger: opts.stagger ?? 0.08, ease: 'expo.out', clearProps: 'filter' },
@@ -85,26 +89,26 @@ export function playIntro(root) {
 
   tl.set(root, { autoAlpha: 1 })
 
-  tl.fromTo(sidebar, { autoAlpha: 0, x: -36 }, { autoAlpha: 1, x: 0, duration: 1.1 }, 0)
-  tl.fromTo(
+  ft(sidebar, { autoAlpha: 0, x: -36 }, { autoAlpha: 1, x: 0, duration: 1.1 }, 0)
+  ft(
     petals,
     { scale: 0, rotation: -120, transformOrigin: '50% 50%', autoAlpha: 0 },
     { scale: 1, rotation: 0, autoAlpha: 1, duration: 1.1, stagger: 0.09, ease: 'back.out(1.8)' },
     0.12
   )
-  tl.fromTo(brand, { autoAlpha: 0, x: -10, clipPath: 'inset(0 100% 0 0)' }, { autoAlpha: 1, x: 0, clipPath: 'inset(0 0% 0 0)', duration: 0.9 }, 0.35)
-  tl.fromTo(pill, { scaleX: 0, autoAlpha: 0 }, { scaleX: 1, autoAlpha: 1, duration: 1.0, ease: 'expo.inOut' }, 0.4)
-  tl.fromTo(navs, { autoAlpha: 0, x: -18 }, { autoAlpha: 1, x: 0, duration: 0.8, stagger: 0.045 }, 0.45)
-  tl.fromTo(logout, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.8 }, 1.0)
+  ft(brand, { autoAlpha: 0, x: -10, clipPath: 'inset(0 100% 0 0)' }, { autoAlpha: 1, x: 0, clipPath: 'inset(0 0% 0 0)', duration: 0.9 }, 0.35)
+  ft(pill, { scaleX: 0, autoAlpha: 0 }, { scaleX: 1, autoAlpha: 1, duration: 1.0, ease: 'expo.inOut' }, 0.4)
+  ft(navs, { autoAlpha: 0, x: -18 }, { autoAlpha: 1, x: 0, duration: 0.8, stagger: 0.045 }, 0.45)
+  ft(logout, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.8 }, 1.0)
 
-  tl.fromTo(hello, { yPercent: 110, autoAlpha: 0, rotate: 8 }, { yPercent: 0, autoAlpha: 1, rotate: 0, duration: 0.9, stagger: 0.025 }, 0.45)
-  tl.fromTo(wave, { scale: 0, rotate: -40, autoAlpha: 0 }, { scale: 1, rotate: 0, autoAlpha: 1, duration: 0.8, ease: 'back.out(2.4)' }, 0.85)
+  ft(hello, { yPercent: 110, autoAlpha: 0, rotate: 8 }, { yPercent: 0, autoAlpha: 1, rotate: 0, duration: 0.9, stagger: 0.025 }, 0.45)
+  ft(wave, { scale: 0, rotate: -40, autoAlpha: 0 }, { scale: 1, rotate: 0, autoAlpha: 1, duration: 0.8, ease: 'back.out(2.4)' }, 0.85)
   tl.add(() => waveHand(wave), 1.35)
-  tl.fromTo(welcome, { autoAlpha: 0, y: 8, letterSpacing: '0.06em' }, { autoAlpha: 1, y: 0, letterSpacing: '0em', duration: 1.0 }, 0.7)
-  tl.fromTo(search, { autoAlpha: 0, scaleX: 0.6, transformOrigin: '100% 50%' }, { autoAlpha: 1, scaleX: 1, duration: 1.0 }, 0.55)
-  tl.fromTo(one(root, '.search-field'), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6 }, 0.85)
-  tl.fromTo(one(root, '.bell'), { scale: 0 }, { scale: 1, duration: 0.7, ease: 'back.out(2.6)' }, 0.95)
-  tl.fromTo(
+  ft(welcome, { autoAlpha: 0, y: 8, letterSpacing: '0.06em' }, { autoAlpha: 1, y: 0, letterSpacing: '0em', duration: 1.0 }, 0.7)
+  ft(search, { autoAlpha: 0, scaleX: 0.6, transformOrigin: '100% 50%' }, { autoAlpha: 1, scaleX: 1, duration: 1.0 }, 0.55)
+  ft(one(root, '.search-field'), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6 }, 0.85)
+  ft(one(root, '.bell'), { scale: 0 }, { scale: 1, duration: 0.7, ease: 'back.out(2.6)' }, 0.95)
+  ft(
     one(root, '.bell-glyph'),
     { rotate: 0 },
     { keyframes: { rotate: [0, 16, -12, 8, -4, 0] }, duration: 0.9, ease: 'none', transformOrigin: '50% 30%' },
@@ -115,30 +119,30 @@ export function playIntro(root) {
   const gaugeFill = one(root, '[data-s="gauge-fill"]')
   if (gaugeFill) {
     const target = gaugeFill.style.strokeDasharray
-    tl.fromTo(gaugeFill, { strokeDasharray: '0 2' }, { strokeDasharray: target, duration: 1.4, ease: 'power3.inOut' }, 1.0)
+    ft(gaugeFill, { strokeDasharray: '0 2' }, { strokeDasharray: target, duration: 1.4, ease: 'power3.inOut' }, 1.0)
   }
-  tl.fromTo(one(root, '[data-s="gauge-inner"]'), { strokeDasharray: '0 1' }, { strokeDasharray: '1 1', duration: 1.2, ease: 'power2.inOut' }, 0.95)
-  tl.fromTo(
+  ft(one(root, '[data-s="gauge-inner"]'), { strokeDasharray: '0 1' }, { strokeDasharray: '1 1', duration: 1.2, ease: 'power2.inOut' }, 0.95)
+  ft(
     one(root, '[data-s="needle"]'),
     { rotation: -180, svgOrigin: '334 214.2' },
     { rotation: -63.4, svgOrigin: '334 214.2', duration: 1.6, ease: 'elastic.out(1, 0.55)' },
     1.05
   )
   const ecg = one(root, '[data-s="ecg-line"]')
-  tl.fromTo(ecg, { strokeDasharray: '0 1' }, { strokeDasharray: '1 1', duration: 1.3, ease: 'power2.inOut' }, 1.05)
-  tl.fromTo(all('[data-s="steps-grid"]'), { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: 0.8, stagger: 0.04 }, 1.1)
-  tl.fromTo(one(root, '[data-s="steps-line"]'), { strokeDasharray: '0 1' }, { strokeDasharray: '1 1', duration: 1.3, ease: 'power2.inOut' }, 1.2)
-  tl.fromTo(all('[data-s="steps-day"]'), { autoAlpha: 0, y: 4 }, { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.04 }, 1.25)
-  tl.fromTo(one(root, '[data-s="steps-dot"]'), { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: 0.7, ease: 'back.out(3)' }, 2.25)
+  ft(ecg, { strokeDasharray: '0 1' }, { strokeDasharray: '1 1', duration: 1.3, ease: 'power2.inOut' }, 1.05)
+  ft(all('[data-s="steps-grid"]'), { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: 0.8, stagger: 0.04 }, 1.1)
+  ft(one(root, '[data-s="steps-line"]'), { strokeDasharray: '0 1' }, { strokeDasharray: '1 1', duration: 1.3, ease: 'power2.inOut' }, 1.2)
+  ft(all('[data-s="steps-day"]'), { autoAlpha: 0, y: 4 }, { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.04 }, 1.25)
+  ft(one(root, '[data-s="steps-dot"]'), { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: 0.7, ease: 'back.out(3)' }, 2.25)
   all('.stat .num').forEach((el, i) => {
     if (el.dataset.count) tl.add(countUp(el, 1.4), 1.05 + i * 0.1)
   })
-  tl.fromTo(all('[data-s="stat-sub"]'), { autoAlpha: 0, y: 5 }, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.04 }, 1.45)
+  ft(all('[data-s="stat-sub"]'), { autoAlpha: 0, y: 5 }, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.04 }, 1.45)
 
   cardsIn(activity, 1.25)
-  tl.fromTo(all('[data-s="grid"]'), { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 1.0, stagger: 0.05, ease: 'expo.inOut' }, 1.4)
-  tl.fromTo(all('[data-s="axis"]'), { autoAlpha: 0, x: -6 }, { autoAlpha: 1, x: 0, duration: 0.6, stagger: 0.05 }, 1.5)
-  tl.fromTo(all('[data-s="axis-x"]'), { autoAlpha: 0, y: 6 }, { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.035 }, 1.6)
+  ft(all('[data-s="grid"]'), { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 1.0, stagger: 0.05, ease: 'expo.inOut' }, 1.4)
+  ft(all('[data-s="axis"]'), { autoAlpha: 0, x: -6 }, { autoAlpha: 1, x: 0, duration: 0.6, stagger: 0.05 }, 1.5)
+  ft(all('[data-s="axis-x"]'), { autoAlpha: 0, y: 6 }, { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.035 }, 1.6)
   all('[data-s="bar"]').forEach((el, i) => {
     const h = Number(el.dataset.h)
     const x = Number(el.dataset.x)
@@ -156,32 +160,32 @@ export function playIntro(root) {
     )
   })
   const focusBar = one(root, '.bar-col.is-on .bar')
-  if (focusBar) tl.fromTo(focusBar, { fill: '#CEE9FF' }, { fill: '#FFF080', duration: 0.6, ease: 'power2.out', clearProps: 'fill' }, 2.45)
+  if (focusBar) ft(focusBar, { fill: '#CEE9FF' }, { fill: '#FFF080', duration: 0.6, ease: 'power2.out', clearProps: 'fill' }, 2.45)
   const tip = one(root, '[data-s="bar-tip"]')
-  tl.fromTo(tip, { autoAlpha: 0, scale: 0.6, transformOrigin: '0% 100%' }, { autoAlpha: 1, scale: 1, duration: 0.8, ease: 'back.out(2)' }, 2.55)
-  tl.fromTo(one(root, '[data-s="activity"] [data-s="chip"]'), { autoAlpha: 0, x: 14 }, { autoAlpha: 1, x: 0, duration: 0.8 }, 1.55)
+  ft(tip, { autoAlpha: 0, scale: 0.6, transformOrigin: '0% 100%' }, { autoAlpha: 1, scale: 1, duration: 0.8, ease: 'back.out(2)' }, 2.55)
+  ft(one(root, '[data-s="activity"] [data-s="chip"]'), { autoAlpha: 0, x: 14 }, { autoAlpha: 1, x: 0, duration: 0.8 }, 1.55)
 
   cardsIn(progress, 1.35)
-  tl.fromTo(one(root, '[data-s="progress"] [data-s="chip"]'), { autoAlpha: 0, x: 14 }, { autoAlpha: 1, x: 0, duration: 0.8 }, 1.6)
-  tl.fromTo(all('[data-s="ring-track"]'), { autoAlpha: 0, scale: 0.85, svgOrigin: '937.9 308.05' }, { autoAlpha: 1, scale: 1, svgOrigin: '937.9 308.05', duration: 1.0, stagger: 0.08 }, 1.5)
+  ft(one(root, '[data-s="progress"] [data-s="chip"]'), { autoAlpha: 0, x: 14 }, { autoAlpha: 1, x: 0, duration: 0.8 }, 1.6)
+  ft(all('[data-s="ring-track"]'), { autoAlpha: 0, scale: 0.85, svgOrigin: '937.9 308.05' }, { autoAlpha: 1, scale: 1, svgOrigin: '937.9 308.05', duration: 1.0, stagger: 0.08 }, 1.5)
   all('[data-s="ring-arc"]').forEach((el, i) => {
     const v = Number(el.dataset.v) / 100
-    tl.fromTo(el, { strokeDasharray: '0 1' }, { strokeDasharray: `${v} 1`, duration: 1.5, ease: 'expo.inOut' }, 1.65 + i * 0.14)
+    ft(el, { strokeDasharray: '0 1' }, { strokeDasharray: `${v} 1`, duration: 1.5, ease: 'expo.inOut' }, 1.65 + i * 0.14)
   })
   const total = one(root, '[data-s="progress"] [data-count]')
   if (total) tl.add(countUp(total, 1.6), 1.65)
-  tl.fromTo(all('[data-s="legend"]'), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.09 }, 2.0)
-  tl.fromTo(all('.legend-dot'), { scale: 0 }, { scale: 1, duration: 0.6, stagger: 0.09, ease: 'back.out(3)' }, 2.15)
+  ft(all('[data-s="legend"]'), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.09 }, 2.0)
+  ft(all('.legend-dot'), { scale: 0 }, { scale: 1, duration: 0.6, stagger: 0.09, ease: 'back.out(3)' }, 2.15)
 
-  tl.fromTo(panel, { autoAlpha: 0, x: 40 }, { autoAlpha: 1, x: 0, duration: 1.2 }, 0.9)
-  tl.fromTo(one(root, '[data-s="avatar"]'), { scale: 0.4, rotate: -14, autoAlpha: 0 }, { scale: 1, rotate: 0, autoAlpha: 1, duration: 0.9, ease: 'back.out(2)' }, 1.15)
-  tl.fromTo([one(root, '[data-s="p-name"]'), ...all('[data-s="p-meta"]')], { autoAlpha: 0, x: 10 }, { autoAlpha: 1, x: 0, duration: 0.8, stagger: 0.05 }, 1.25)
-  tl.fromTo(one(root, '[data-s="p-band"]'), { autoAlpha: 0, scaleX: 0.8 }, { autoAlpha: 1, scaleX: 1, duration: 0.9 }, 1.3)
+  ft(panel, { autoAlpha: 0, x: 40 }, { autoAlpha: 1, x: 0, duration: 1.2 }, 0.9)
+  ft(one(root, '[data-s="avatar"]'), { scale: 0.4, rotate: -14, autoAlpha: 0 }, { scale: 1, rotate: 0, autoAlpha: 1, duration: 0.9, ease: 'back.out(2)' }, 1.15)
+  ft([one(root, '[data-s="p-name"]'), ...all('[data-s="p-meta"]')], { autoAlpha: 0, x: 10 }, { autoAlpha: 1, x: 0, duration: 0.8, stagger: 0.05 }, 1.25)
+  ft(one(root, '[data-s="p-band"]'), { autoAlpha: 0, scaleX: 0.8 }, { autoAlpha: 1, scaleX: 1, duration: 0.9 }, 1.3)
   all('[data-s="p-band"] [data-count]').forEach((el, i) => tl.add(countUp(el, 1.1), 1.4 + i * 0.08))
-  tl.fromTo(all('[data-s="c-title"], [data-s="c-nav"]'), { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.06 }, 1.4)
-  tl.fromTo(all('[data-s="c-head"]'), { autoAlpha: 0, y: -6 }, { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.03 }, 1.5)
+  ft(all('[data-s="c-title"], [data-s="c-nav"]'), { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.06 }, 1.4)
+  ft(all('[data-s="c-head"]'), { autoAlpha: 0, y: -6 }, { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.03 }, 1.5)
   const days = all('.day')
-  tl.fromTo(
+  ft(
     days,
     { autoAlpha: 0, scale: 0.4 },
     {
@@ -194,44 +198,44 @@ export function playIntro(root) {
     1.55
   )
   const marks = all('.day.mark-blue .day-bg, .day.mark-yellow .day-bg')
-  tl.fromTo(marks, { scale: 0 }, { scale: 1, duration: 0.7, stagger: 0.12, ease: 'back.out(2.6)', clearProps: 'transform' }, 2.25)
+  ft(marks, { scale: 0 }, { scale: 1, duration: 0.7, stagger: 0.12, ease: 'back.out(2.6)', clearProps: 'transform' }, 2.25)
 
-  tl.fromTo(all('[data-s="s-title"], [data-s="s-add"]'), { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.06 }, 1.9)
-  tl.fromTo(all('[data-s="sched"]'), { autoAlpha: 0, x: 22 }, { autoAlpha: 1, x: 0, duration: 0.9, stagger: 0.09 }, 2.0)
+  ft(all('[data-s="s-title"], [data-s="s-add"]'), { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.06 }, 1.9)
+  ft(all('[data-s="sched"]'), { autoAlpha: 0, x: 22 }, { autoAlpha: 1, x: 0, duration: 0.9, stagger: 0.09 }, 2.0)
   const tick = one(root, '.sched.is-done .check-mark path')
-  if (tick) tl.fromTo(tick, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.6, ease: 'power2.out', clearProps: 'strokeDashoffset' }, 2.45)
+  if (tick) ft(tick, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.6, ease: 'power2.out', clearProps: 'strokeDashoffset' }, 2.45)
 
   const recent = one(root, '[data-s="recent"]')
-  tl.fromTo(recent, { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1.0 }, 2.15)
-  tl.fromTo(all('[data-s="r-item"]'), { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1 }, 2.35)
-  tl.fromTo(all('[data-s="r-ico"]'), { scale: 0 }, { scale: 1, duration: 0.7, stagger: 0.1, ease: 'back.out(2.6)' }, 2.4)
-  tl.fromTo(one(root, '.r-line'), { scaleY: 0 }, { scaleY: 1, duration: 0.9, ease: 'power3.inOut' }, 2.8)
+  ft(recent, { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1.0 }, 2.15)
+  ft(all('[data-s="r-item"]'), { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1 }, 2.35)
+  ft(all('[data-s="r-ico"]'), { scale: 0 }, { scale: 1, duration: 0.7, stagger: 0.1, ease: 'back.out(2.6)' }, 2.4)
+  ft(one(root, '.r-line'), { scaleY: 0 }, { scaleY: 1, duration: 0.9, ease: 'power3.inOut' }, 2.8)
 
   cardsIn(today, 2.0)
-  tl.fromTo(one(root, '[data-s="today"] [data-s="chip"]'), { autoAlpha: 0, x: 14 }, { autoAlpha: 1, x: 0, duration: 0.8 }, 2.25)
+  ft(one(root, '[data-s="today"] [data-s="chip"]'), { autoAlpha: 0, x: 14 }, { autoAlpha: 1, x: 0, duration: 0.8 }, 2.25)
   const mapImg = one(root, '[data-s="map-img"]')
-  tl.fromTo(mapImg, { clipPath: 'circle(0px at 65px 78.5px)', scale: 1.15 }, { clipPath: 'circle(330px at 65px 78.5px)', scale: 1, duration: 1.6, ease: 'power3.inOut', clearProps: 'clipPath,transform' }, 2.2)
-  tl.fromTo(one(root, '[data-s="marker"]'), { scale: 0 }, { scale: 1, duration: 0.8, ease: 'back.out(2.4)' }, 2.35)
-  tl.fromTo(one(root, '[data-s="route"]'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.8, ease: 'power2.inOut' }, 2.65)
-  tl.fromTo(all('[data-s="today-time"], [data-s="today-title"], [data-s="divider"]'), { autoAlpha: 0, x: 14 }, { autoAlpha: 1, x: 0, duration: 0.8, stagger: 0.07 }, 2.35)
-  tl.fromTo(all('[data-s="today-row"]'), { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.07 }, 2.5)
+  ft(mapImg, { clipPath: 'circle(0px at 65px 78.5px)', scale: 1.15 }, { clipPath: 'circle(330px at 65px 78.5px)', scale: 1, duration: 1.6, ease: 'power3.inOut', clearProps: 'clipPath,transform' }, 2.2)
+  ft(one(root, '[data-s="marker"]'), { scale: 0 }, { scale: 1, duration: 0.8, ease: 'back.out(2.4)' }, 2.35)
+  ft(one(root, '[data-s="route"]'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.8, ease: 'power2.inOut' }, 2.65)
+  ft(all('[data-s="today-time"], [data-s="today-title"], [data-s="divider"]'), { autoAlpha: 0, x: 14 }, { autoAlpha: 1, x: 0, duration: 0.8, stagger: 0.07 }, 2.35)
+  ft(all('[data-s="today-row"]'), { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.07 }, 2.5)
   all('[data-s="today-row"] [data-count]').forEach((el, i) => tl.add(countUp(el, 1.4), 2.55 + i * 0.07))
 
-  tl.fromTo(sections, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.06 }, 2.4)
+  ft(sections, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.06 }, 2.4)
   cardsIn(meals, 2.5, { stagger: 0.12 })
-  tl.fromTo(all('[data-s="meal-photo"] img'), { scale: 1.35, rotate: 6 }, { scale: 1, rotate: 0, duration: 1.6, stagger: 0.12, ease: 'expo.out' }, 2.55)
-  tl.fromTo(all('[data-s="meal-tag"]'), { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.6, stagger: 0.12, ease: 'back.out(2.4)' }, 2.85)
+  ft(all('[data-s="meal-photo"] img'), { scale: 1.35, rotate: 6 }, { scale: 1, rotate: 0, duration: 1.6, stagger: 0.12, ease: 'expo.out' }, 2.55)
+  ft(all('[data-s="meal-tag"]'), { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.6, stagger: 0.12, ease: 'back.out(2.4)' }, 2.85)
 
-  tl.fromTo(classes, { autoAlpha: 0, x: -40 }, { autoAlpha: 1, x: 0, duration: 1.1, stagger: 0.1 }, 2.65)
-  tl.fromTo(all('[data-s="class-ico"]'), { scale: 0, rotate: -90 }, { scale: 1, rotate: 0, duration: 0.8, stagger: 0.1, ease: 'back.out(2)' }, 2.85)
-  tl.fromTo(all('[data-s="class-level"]'), { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.6, stagger: 0.1, ease: 'back.out(2.4)' }, 3.0)
+  ft(classes, { autoAlpha: 0, x: -40 }, { autoAlpha: 1, x: 0, duration: 1.1, stagger: 0.1 }, 2.65)
+  ft(all('[data-s="class-ico"]'), { scale: 0, rotate: -90 }, { scale: 1, rotate: 0, duration: 0.8, stagger: 0.1, ease: 'back.out(2)' }, 2.85)
+  ft(all('[data-s="class-level"]'), { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.6, stagger: 0.1, ease: 'back.out(2.4)' }, 3.0)
 
-  tl.fromTo(upgrade, { autoAlpha: 0, y: 40, scale: 0.94 }, { autoAlpha: 1, y: 0, scale: 1, duration: 1.2 }, 2.7)
-  tl.fromTo(one(root, '[data-s="upgrade-mark"]'), { rotate: -180, scale: 0, transformOrigin: '50% 50%' }, { rotate: 0, scale: 1, duration: 1.2, ease: 'back.out(1.6)' }, 2.9)
-  tl.fromTo(all('.upgrade-head span'), { autoAlpha: 0, yPercent: 60 }, { autoAlpha: 1, yPercent: 0, duration: 0.9, stagger: 0.1 }, 3.0)
-  tl.fromTo([one(root, '[data-s="upgrade-copy"]'), one(root, '[data-s="upgrade-btn"]')], { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1 }, 3.2)
+  ft(upgrade, { autoAlpha: 0, y: 40, scale: 0.94 }, { autoAlpha: 1, y: 0, scale: 1, duration: 1.2 }, 2.7)
+  ft(one(root, '[data-s="upgrade-mark"]'), { rotate: -180, scale: 0, transformOrigin: '50% 50%' }, { rotate: 0, scale: 1, duration: 1.2, ease: 'back.out(1.6)' }, 2.9)
+  ft(all('.upgrade-head span'), { autoAlpha: 0, yPercent: 60 }, { autoAlpha: 1, yPercent: 0, duration: 0.9, stagger: 0.1 }, 3.0)
+  ft([one(root, '[data-s="upgrade-copy"]'), one(root, '[data-s="upgrade-btn"]')], { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1 }, 3.2)
   tl.add(() => shine(root), 3.6)
-  tl.fromTo(footer, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.0 }, 3.2)
+  ft(footer, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.0 }, 3.2)
   tl.add(() => settle(root))
 
   return tl

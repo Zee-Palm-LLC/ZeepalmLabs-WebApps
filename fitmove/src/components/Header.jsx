@@ -10,7 +10,7 @@ export function Greeting() {
   const hello = 'Hello, Wingman!'
   return (
     <>
-      <T x={257.1} b={39.1} s={22} w={500} c="var(--ink)" className="hello" data-s="hello" aria-label={hello}>
+      <T x={257.1} b={39.1} s={22} w={500} c="var(--ink)" className="hello" data-s="hello" aria-label={hello} data-free>
         {hello.split('').map((ch, i) => (
           <span key={i} className="ch" aria-hidden="true">
             {ch === ' ' ? ' ' : ch}
@@ -24,12 +24,13 @@ export function Greeting() {
         h={28.5}
         className="wave"
         data-s="wave"
+        data-free
         ref={wave}
         onMouseEnter={() => waveHand(wave.current)}
       >
         <img src="/img/wave.png" alt="" draggable="false" />
       </At>
-      <T x={256.7} b={61.4} s={12} c="var(--gray)" className="welcome" data-s="welcome">
+      <T x={256.7} b={61.4} s={12} c="var(--gray)" className="welcome" data-s="welcome" data-free>
         Welcome and Let’s do some workout today!
       </T>
     </>
@@ -84,7 +85,7 @@ export function SearchBar() {
   }
 
   return (
-    <Card x={738} y={15.9} w={330.1} h={52} r={26} sm={0} className={`search-card ${open ? 'is-open' : ''}`} data-s="search">
+    <Card x={738} y={15.9} w={330.1} h={52} r={26} sm={0} className={`search-card ${open ? 'is-open' : ''}`} data-s="search" data-top>
       <At x={746} y={23.9} w={270} h={36} className="search-field">
         <Glyph n="search" className="search-icon" ox={746} oy={23.9} />
         <input

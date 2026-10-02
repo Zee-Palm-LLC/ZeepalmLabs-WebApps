@@ -1,6 +1,9 @@
 import { useSyncExternalStore } from 'react'
 
+const initialPath = typeof window === 'undefined' ? '/' : window.location.pathname
+
 let state = {
+  route: initialPath,
   nav: 'dashboard',
   week: 0,
   bar: null,
@@ -40,4 +43,14 @@ export function subscribeUi(fn) {
 
 export function useUi(selector) {
   return useSyncExternalStore(subscribeUi, () => selector(state))
+}
+
+export function navigate(path, opts = {}) {
+  if (path === state.route) return
+  if (!opts.silent && typeof window !== 'undefined') window.history.pushState({}, '', path + (window.location.search || ''))
+  setUi({ route: path, menu: null, searchOpen: false })
+}
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('popstate', () => setUi({ route: window.location.pathname, menu: null }))
 }

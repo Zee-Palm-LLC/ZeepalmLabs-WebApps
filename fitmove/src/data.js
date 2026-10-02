@@ -176,3 +176,15 @@ export const NOTIFICATIONS = [
   { title: 'You hit 75% of your weekly goal', time: '1 hour ago' },
   { title: 'Jordan Reed shared a new class', time: 'Yesterday' },
 ]
+
+export const PALETTE = [
+  { kind: 'Page', label: 'Dashboard', to: '/' },
+  { kind: 'Page', label: 'Statistics', to: '/statistics' },
+  { kind: 'Page', label: 'Exercises', to: '/exercises' },
+  { kind: 'Page', label: 'Schedule', to: '/schedule' },
+  { kind: 'Page', label: 'Classes', to: '/classes' },
+  { kind: 'Page', label: 'Trainers', to: '/trainers' },
+  { kind: 'Page', label: 'Messages', to: '/messages' },
+  { kind: 'Page', label: 'Workout Tracker', to: '/workout-tracker' },
+  { kind: 'Page', label: 'Meal Plan', to: '/meal-plan' },
+]
