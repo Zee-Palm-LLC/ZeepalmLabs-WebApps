@@ -399,9 +399,9 @@
 
 .hero.m .h-can {
   left: 138px;
-  top: calc(var(--H) * 0.5 + 20px);
+  top: calc(var(--H) * 0.5 + 44px);
   width: 154px;
-  height: calc(var(--H) * 0.42 - 130px);
+  height: calc(var(--H) * 0.42 - 140px);
 }
 
 .hero.m .h-floor {

@@ -1,5 +1,7 @@
 # Creatine Gummies
 
+Live: [zeepalm-creatine-gummies.vercel.app](https://zeepalm-creatine-gummies.vercel.app)
+
 A shop landing page for a creatine gummy brand, built in React. It is a pixel-perfect recreation of a Dribbble design video, with live 3D cans and motion added throughout.
 
 ## Design credit
@@ -64,3 +66,7 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Deploy
+
+The site is the Vercel project `creatine-gummies`, with Root Directory `creatine-gummies` and the Vite preset. The project is not connected to Git, so to redeploy, deploy the latest commit of `main` to it.

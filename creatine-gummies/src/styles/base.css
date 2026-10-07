@@ -24,10 +24,15 @@
 }
 
 html {
+  scrollbar-width: none;
   background: var(--paper);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 html.lenis,
