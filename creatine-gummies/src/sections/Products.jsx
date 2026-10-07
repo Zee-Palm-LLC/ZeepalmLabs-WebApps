@@ -49,8 +49,7 @@ function FlavorCard({ f, on, onEnter, onAdd }) {
       return
     }
     if (on) {
-      gsap.to(h, { rotY: `+=${Math.PI * 2}`, duration: 1.4, ease: 'expo.out', overwrite: 'auto' })
-      gsap.fromTo(h, { dy: 0 }, { dy: -14, duration: 0.5, ease: 'power2.out', yoyo: true, repeat: 1 })
+      gsap.fromTo(h, { scale: 0.97 }, { scale: 1, duration: 0.6, ease: 'back.out(2.5)', overwrite: 'auto' })
     }
   }, [on])
   return (
@@ -96,9 +95,15 @@ function SelectCard({ on, onEnter }) {
         </span>
       ))}
       <div className="pg-tags display">
-        <span className="t1">Select</span>
-        <span className="t2">Your Favorite</span>
-        <span className="t3">Flavor</span>
+        <span className="t1">
+          <b>Select</b>
+        </span>
+        <span className="t2">
+          <b>Your Favorite</b>
+        </span>
+        <span className="t3">
+          <b>Flavor</b>
+        </span>
       </div>
       <a className="pg-all" href="#flavours">
         Shop All
@@ -116,11 +121,17 @@ export default function Products({ onAdd }) {
     const ctx = gsap.context(() => {
       gsap.utils.toArray('.pg-row').forEach((row) => {
         gsap.fromTo(
-          row.querySelectorAll('.pg-info, .pg-buy, .pg-tags span, .pg-all'),
+          row.querySelectorAll('.pg-info, .pg-buy, .pg-all'),
           { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.06, scrollTrigger: { trigger: row, start: 'top 75%' } },
+          { y: 0, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.06, clearProps: 'transform', scrollTrigger: { trigger: row, start: 'top 75%' } },
         )
       })
+      const sel = root.current.querySelector('.pg-select')
+      const tl = gsap.timeline({ scrollTrigger: { trigger: sel, start: 'top 80%' } })
+      tl.fromTo(sel.querySelectorAll('.pg-tags span'), { clipPath: 'inset(0 50% 0 50%)' }, { clipPath: 'inset(0 0% 0 0%)', duration: 0.6, ease: 'power3.out', stagger: 0.1 }, 0)
+      tl.fromTo(sel.querySelectorAll('.pg-tags b'), { yPercent: 110 }, { yPercent: 0, duration: 0.7, ease: 'power3.out', stagger: 0.1 }, 0.25)
+      tl.fromTo(sel.querySelectorAll('.pg-doodle svg'), { scale: 0, rotate: -40 }, { scale: 1, rotate: 0, duration: 0.8, ease: 'back.out(2)', stagger: 0.08 }, 0.1)
+      tl.fromTo(sel.querySelector('.pg-all'), { scale: 0 }, { scale: 1, duration: 0.6, ease: 'back.out(2.2)', clearProps: 'transform' }, 0.6)
     }, root)
     return () => ctx.revert()
   }, [])

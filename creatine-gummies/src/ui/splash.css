@@ -2,16 +2,33 @@
   position: fixed;
   inset: 0;
   z-index: 40;
-  display: grid;
-  place-items: center;
+  overflow: hidden;
   background: #fff;
-  clip-path: inset(0 0 0 0 round 0 0 0 0);
+}
+
+.splashing .can-layer {
+  z-index: 41;
+}
+
+.sp-c {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
 }
 
 .sp-in {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 150px;
   display: grid;
   justify-items: center;
-  gap: 14px;
+  gap: 16px;
+}
+
+.splash.m .sp-in {
+  top: 150px;
 }
 
 .sp-mark {
@@ -27,16 +44,10 @@
   color: #2b2b2b;
 }
 
+.splash.m .sp-word {
+  font-size: 26px;
+}
+
 .sp-word span {
   display: inline-block;
-}
-
-.sp-fruits {
-  display: flex;
-  gap: 8px;
-  margin-top: 6px;
-}
-
-.sp-fruits span {
-  display: block;
 }

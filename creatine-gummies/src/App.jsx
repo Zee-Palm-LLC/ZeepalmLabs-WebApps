@@ -9,6 +9,7 @@ import Faq from './sections/Faq.jsx'
 import Finale from './sections/Finale.jsx'
 import Toast from './ui/Toast.jsx'
 import Splash from './ui/Splash.jsx'
+import Cursor from './ui/Cursor.jsx'
 import { startSmooth } from './lib/smooth.js'
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
       </div>
       <Toast toast={toast} cart={cart} />
       {!still && <Splash onDone={() => setGo(true)} />}
+      <Cursor />
     </CanLayer>
   )
 }

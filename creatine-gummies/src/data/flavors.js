@@ -27,6 +27,7 @@ export const FLAVORS = [
     id: 'straw',
     name: 'Strawberry Power',
     words: ['Strawberry', 'Power'],
+    hot: 0,
     tag: 'muscle support',
     desc: ['Juicy strawberry flavor packed', 'with pure creatine for strength', 'and endurance.'],
     blurb: 'Juicy strawberry flavor packed with pure creatine for strength and endurance.',

@@ -9,6 +9,8 @@ import './hero.css'
 
 const H = 900
 const HERO_ORDER = ['apple', 'straw', 'berry', 'lemon', 'choco']
+const TILT = { apple: -0.62, straw: -0.34, berry: -0.56, lemon: -0.46, choco: -0.52 }
+const LINE2 = ['One', 'Gummy', 'at', 'a', 'Time']
 const fit = () => stageFor(H, 640, 760)
 
 export default function Hero({ cart, intro, go }) {
@@ -32,7 +34,7 @@ export default function Hero({ cart, intro, go }) {
   useLayoutEffect(() => {
     if (!entering) return
     const el = root.current
-    gsap.set(el.querySelectorAll('.hn > *, .eyebrow, .h-line, .h-copy, .h-btn, .h-doodle'), { opacity: 0 })
+    gsap.set(el.querySelectorAll('.hn > *, .eyebrow, .hw, .h-copy, .h-btn, .h-icon, .h-doodle'), { opacity: 0 })
     gsap.set(el.querySelector('.h-floor'), { yPercent: 100 })
   }, [])
 
@@ -40,22 +42,34 @@ export default function Hero({ cart, intro, go }) {
     if (!entering || !go) return
     const el = root.current
     const tl = gsap.timeline({ onComplete: () => (played.current = true) })
-    tl.fromTo(el.querySelector('.h-title'), { scale: 1.28, y: 70 }, { scale: 1, y: 0, duration: 1.5, ease: 'expo.out' }, 0)
-    tl.fromTo(el.querySelectorAll('.h-line'), { opacity: 0, filter: 'blur(18px)' }, { opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power2.out', stagger: 0.18 }, 0)
-    tl.fromTo(el.querySelectorAll('.hn > *'), { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.05 }, 0.55)
-    tl.fromTo(el.querySelectorAll('.eyebrow, .h-copy, .h-btn, .h-doodle'), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.08 }, 0.7)
-    tl.fromTo(el.querySelector('.h-floor'), { yPercent: 100 }, { yPercent: 0, duration: 1.3, ease: 'expo.out' }, 0.8)
+    const doodle = el.querySelectorAll('.h-doodle path')
+    tl.fromTo(el.querySelector('.h-title'), { scale: 1.32, y: 96 }, { scale: 1, y: 0, duration: 1.45, ease: 'power3.inOut' }, 0)
+    tl.fromTo(el.querySelectorAll('.hw'), { opacity: 0, filter: 'blur(16px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.55, ease: 'power2.out', stagger: 0.1 }, 0.05)
+    tl.fromTo(el.querySelector('.eyebrow'), { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.35)
+    tl.fromTo(el.querySelectorAll('.hn > *'), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'power1.out', stagger: 0.04 }, 0.5)
     tl.add(() => {
       const h = can.current
-      if (h) gsap.fromTo(h, { opacity: 1, dy: -760, rotZ: -1.8, rotY: -2.6, scale: 0.86 }, { dy: 0, rotZ: -0.62, rotY: 0, scale: 1, duration: 1.4, ease: 'back.out(1.1)' })
-    }, 0.45)
+      if (!h) return
+      gsap.fromTo(h, { opacity: 0, dy: 460, rotZ: -1.15, rotY: 1.4, scale: 0.9 }, { opacity: 1, dy: 0, rotZ: TILT[HERO_ORDER[0]], rotY: 0, scale: 1, duration: 1.15, ease: 'power3.out' })
+    }, 0.6)
+    tl.fromTo(el.querySelector('.h-copy'), { opacity: 0, filter: 'blur(8px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.6 }, 0.9)
+    tl.fromTo(el.querySelector('.h-icon'), { opacity: 0, scale: 0, rotate: -40 }, { opacity: 1, scale: 1, rotate: 0, duration: 0.6, ease: 'back.out(2.4)' }, 1.25)
+    tl.fromTo(el.querySelector('.h-btn'), { opacity: 0, scaleX: 0.05, scaleY: 0.4 }, { opacity: 1, scaleX: 1, scaleY: 1, duration: 0.6, ease: 'back.out(1.6)', clearProps: 'transform' }, 1.3)
+    tl.fromTo(el.querySelector('.h-floor'), { yPercent: 100 }, { yPercent: 0, duration: 0.8, ease: 'power3.out' }, 1.5)
+    tl.fromTo(el.querySelector('.h-scroll'), { scale: 0 }, { scale: 1, duration: 0.5, ease: 'back.out(2)' }, 1.9)
+    tl.set(el.querySelector('.h-doodle'), { opacity: 1 }, 1.9)
+    tl.fromTo(doodle, { strokeDasharray: 30, strokeDashoffset: 30 }, { strokeDashoffset: 0, duration: 0.4, ease: 'power2.out', stagger: 0.07 }, 1.9)
     return () => tl.kill()
   }, [go])
 
   useEffect(() => {
     if (!entering || !go) return
-    const id = setInterval(() => setI((v) => (v + 1) % HERO_ORDER.length), 3400)
-    return () => clearInterval(id)
+    let id = 0
+    const t = setTimeout(() => (id = setInterval(() => setI((v) => (v + 1) % HERO_ORDER.length), 1500)), 2400)
+    return () => {
+      clearTimeout(t)
+      clearInterval(id)
+    }
   }, [go])
 
   useEffect(() => {
@@ -63,10 +77,9 @@ export default function Hero({ cart, intro, go }) {
     if (!h) return
     if (entering && !played.current) return
     gsap.killTweensOf(h)
+    Object.assign(h, { rotZ: TILT[f.id], rotY: 0, dy: 0, opacity: 1 })
     if (still) return
-    gsap.fromTo(h, { dy: -520, rotZ: -1.6, rotY: -2.4, scale: 0.86 }, { dy: 0, rotZ: -0.62, rotY: 0, scale: 1, duration: 1.25, ease: 'back.out(1.1)' })
-    const el = root.current
-    gsap.fromTo(el.querySelectorAll('.hero-swap'), { yPercent: 40, opacity: 0, rotate: -12 }, { yPercent: 0, opacity: 1, rotate: 0, duration: 0.8, ease: 'back.out(2)', stagger: 0.05 })
+    gsap.fromTo(h, { scale: 0.95 }, { scale: 1, duration: 0.4, ease: 'back.out(3)' })
   }, [i, still])
 
   return (
@@ -101,12 +114,22 @@ export default function Hero({ cart, intro, go }) {
         </p>
         <h1 className="h-title display" data-hi>
           <span className="h-line">
-            <span className="h-icon hero-swap" key={`i${i}`}>
+            <span className="h-icon">
               <Fruit kind={f.fruit} size={62} />
             </span>
-            Boost <em>Your Day</em>
+            <span className="hw">Boost</span>{' '}
+            <em>
+              <span className="hw">Your</span> <span className="hw">Day</span>
+            </em>
           </span>
-          <span className="h-line">One Gummy at a Time</span>
+          <span className="h-line">
+            {LINE2.map((w, k) => (
+              <span key={w + k}>
+                {k > 0 && ' '}
+                <span className="hw">{w}</span>
+              </span>
+            ))}
+          </span>
         </h1>
         <Doodle className="h-doodle" />
         <p className="h-copy" data-hi>
@@ -117,7 +140,7 @@ export default function Hero({ cart, intro, go }) {
         <a className="pill h-btn" href="#flavours" onClick={(e) => (e.preventDefault(), scrollToId('flavours'))} data-hi>
           Shop Now
         </a>
-        <CanAnchor flavor={f.id} className="h-can" init={{ rotZ: -0.62, rotX: 0.12, opacity: entering ? 0 : 1 }} onReady={(h) => (can.current = h)} />
+        <CanAnchor flavor={f.id} className="h-can" init={{ rotZ: TILT[f.id], rotX: 0.12, opacity: entering ? 0 : 1 }} onReady={(h) => (can.current = h)} />
         <div className="h-floor">
           {view.m ? (
             <svg viewBox="0 0 430 120" preserveAspectRatio="none" aria-hidden="true">

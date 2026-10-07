@@ -27,15 +27,17 @@ The shot is a 38.8 s screen recording that shows the site at half scale. Each se
 
 | Section | What happens |
 | --- | --- |
-| Intro | A logo splash wipes away. The headline settles out of a blur, the nav and copy rise in, and the can drops onto the page. |
-| Hero | Cycles through the five flavors. Each change drops a new can in and recolors the page. |
-| Showcase | Pinned while you scroll through all five flavors. The arched name, lifestyle photos, fruit badge and can swap for each flavor, and the can spins. |
-| Flavors | Two cards per row. The hovered card grows, fills with its flavor color, brings in a curved name and fruit doodles, and spins its can. **Shop Now** adds to the cart. |
-| Manifesto | Four stacked tags fly off as you scroll, and the play button grows into the full manifesto image. **Play** runs a short caption reel over it. |
-| Benefits | The headline sharpens word by word. The bento cards rise in, the photos drift with scroll, and the stats count up. |
-| FAQ | An accordion where the plus turns into a minus. **Show More** adds three more questions. |
-| Finale | Three big cans rise and tilt as you scroll in, and lean toward the cursor. |
+| Intro | A splash of the logo with three 3D cans rising, as in the video's first frame. Then the headline blurs in word by word while it shrinks into place, the can rises in, the button grows and the floor slides up. |
+| Hero | Hard-cuts between the five flavors every 1.5 s, recoloring the whole page, as in the video. |
+| Showcase | Pinned and driven by scroll. Each flavor's arched name turns like a wheel around the can, while the cans and lifestyle photos travel up and out and the next ones come in from below. |
+| Flavors | Two cards per row. The hovered card grows and fades into its flavor color, the curved name slides in along its arc, and fruit doodles pop in. The tags on the dark card wipe open and their text slides up. **Shop Now** adds to the cart. |
+| Manifesto | The four tags wipe open from their centers. Scrolling moves them away while the play button grows into the full manifesto image. **Play** runs a short caption reel over it. |
+| Benefits | The headline sharpens word by word, the bento cards blur in, the photos drift with scroll, and the stats count up. |
+| FAQ | The title and rows blur in. Each plus turns into a minus as its answer opens. **Show More** adds three more questions. |
+| Finale | Three big cans rise with the scroll and lean toward the cursor, and the footer slides up over them. |
 | Footer | Links scroll to each section. The newsletter field confirms a valid email, and a back-to-top button sits in the fruit cluster. |
+
+A triangle cursor follows the pointer like the one in the video. It turns white over dark cards and photos.
 
 Adding to the cart bumps the cart badge and shows a toast.
 

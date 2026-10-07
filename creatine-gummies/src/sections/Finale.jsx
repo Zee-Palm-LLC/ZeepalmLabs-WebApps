@@ -41,22 +41,18 @@ export default function Finale() {
     const el = root.current
     const ctx = gsap.context(() => {
       gsap.fromTo(el.querySelectorAll('.fn-title span, .fn-sub'), { opacity: 0, y: 40, filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: 'power3.out', stagger: 0.12, scrollTrigger: { trigger: el, start: 'top 70%' } })
-      gsap.fromTo(el.querySelectorAll('.fn-foot > *'), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', stagger: 0.06, scrollTrigger: { trigger: el.querySelector('.fn-foot'), start: 'top 85%' } })
+      gsap.fromTo(el.querySelectorAll('.fn-foot > *'), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', stagger: 0.06, clearProps: 'transform', scrollTrigger: { trigger: el.querySelector('.fn-foot'), start: 'top 85%' } })
     }, el)
     return () => ctx.revert()
   }, [])
 
   const ready = (k, h) => {
     hs.current[k] = h
-    const c = CANS[k]
-    const st = { dy: 520, rotZ: c.rotZ * 3, rotY: c.rotY - 1.4 }
-    Object.assign(h, st)
+    h.dy = 460
     gsap.to(h, {
       dy: 0,
-      rotZ: c.rotZ,
-      rotY: c.rotY,
       ease: 'none',
-      scrollTrigger: { trigger: root.current, start: `top ${85 - k * 6}%`, end: 'top 10%', scrub: 1 },
+      scrollTrigger: { trigger: root.current, start: `top ${95 - k * 4}%`, end: 'top 5%', scrub: 0.6 },
     })
   }
 

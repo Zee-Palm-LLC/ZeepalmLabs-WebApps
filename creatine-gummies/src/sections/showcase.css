@@ -45,7 +45,7 @@
 }
 
 .arc-ch.hot {
-  fill: var(--accent);
+  fill: var(--hot);
 }
 
 .sc-can {
@@ -77,6 +77,7 @@
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 12px 28px -14px rgba(0, 0, 0, 0.35);
+  transform: scale(0);
 }
 
 .sc-photo {
@@ -85,7 +86,7 @@
   height: 216px;
   border-radius: 10px;
   overflow: hidden;
-  transition: left 0.9s var(--ease-out), top 0.9s var(--ease-out), transform 0.5s var(--ease-out);
+  will-change: transform, opacity, filter;
   box-shadow: 0 18px 40px -26px rgba(0, 0, 0, 0.45);
 }
 
@@ -94,10 +95,6 @@
   height: 100%;
   object-fit: cover;
   transition: transform 1.2s var(--ease-out);
-}
-
-.sc-photo:hover {
-  transform: rotate(-3deg) scale(1.04);
 }
 
 .sc-photo:hover img {

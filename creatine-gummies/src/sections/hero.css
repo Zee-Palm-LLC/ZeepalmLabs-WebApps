@@ -424,3 +424,11 @@
 .hero.m .hero-bleed {
   background: radial-gradient(90% 40% at 50% 80%, var(--glow), rgba(249, 249, 249, 0) 70%);
 }
+
+.hw {
+  display: inline-block;
+}
+
+.h-btn {
+  transform-origin: 50% 50%;
+}

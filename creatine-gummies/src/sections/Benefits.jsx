@@ -63,8 +63,8 @@ export default function Benefits() {
         { opacity: 1, filter: 'blur(0px)', yPercent: 0, duration: 1, ease: 'power3.out', stagger: 0.07, scrollTrigger: { trigger: el, start: 'top 70%' } },
       )
       gsap.fromTo(el.querySelector('.bn-sub'), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.9, delay: 0.4, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 70%' } })
-      el.querySelectorAll('.bn-card').forEach((c, k) => {
-        gsap.fromTo(c, { y: 120, opacity: 0, rotate: k % 2 ? 2 : -2 }, { y: 0, opacity: 1, rotate: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: c, start: 'top 92%' } })
+      el.querySelectorAll('.bn-card').forEach((c) => {
+        gsap.fromTo(c, { y: 50, opacity: 0, filter: 'blur(16px)' }, { y: 0, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power2.out', clearProps: 'filter', scrollTrigger: { trigger: c, start: 'top 92%' } })
         const img = c.querySelector('.bn-img img')
         if (img) gsap.fromTo(img, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: c, start: 'top bottom', end: 'bottom top', scrub: true } })
       })

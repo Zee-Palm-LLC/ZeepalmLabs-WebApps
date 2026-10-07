@@ -29,15 +29,14 @@ export default function Manifesto() {
     const el = stage.current
     const q = (s) => el.querySelectorAll(s)
     const ctx = gsap.context(() => {
-      gsap.fromTo(q('.mf-tag i'), { y: 60, opacity: 0, rotate: (k) => [8, -8, 6, -10][k] }, { y: 0, opacity: 1, rotate: (k) => [1.4, -1.4, 0, -1.6][k], duration: 1, ease: 'back.out(1.8)', stagger: 0.09, scrollTrigger: { trigger: wrap.current, start: 'top 70%' } })
+      gsap.set(q('.mf-tag i'), { rotate: (k) => [1.4, -1.4, 0, -1.6][k] })
+      gsap.fromTo(q('.mf-tag i'), { clipPath: 'inset(0% 50% 0% 50%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.75, ease: 'power3.out', stagger: 0.12, scrollTrigger: { trigger: wrap.current, start: 'top 70%' } })
       gsap.fromTo(q('.mf-eyebrow span, .mf-play button'), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.3, scrollTrigger: { trigger: wrap.current, start: 'top 70%' } })
       const tl = gsap.timeline({
         defaults: { ease: 'none' },
         scrollTrigger: { trigger: wrap.current, start: 'top top', end: () => `+=${window.innerHeight * 1.6}`, pin: el, scrub: 0.8 },
       })
-      tl.to(q('.mf-tag'), { y: -900, rotate: (k) => [-6, 5, -4, 7][k], ease: 'power2.in', stagger: 0.04, duration: 0.55 }, 0)
-      tl.to(q('.mf-tag'), { opacity: 0, stagger: 0.04, duration: 0.2 }, 0.35)
-      tl.to(q('.mf-eyebrow'), { y: -420, opacity: 0, ease: 'power2.in', duration: 0.45 }, 0)
+      tl.to(q('.mf-tag, .mf-eyebrow'), { y: -820, ease: 'none', duration: 0.75 }, 0)
       tl.to(q('.mf-ring'), { scale: 0.4, opacity: 0, duration: 0.15 }, 0)
       tl.fromTo(q('.mf-card'), { clipPath: clip0 }, { clipPath: 'inset(0px 0px 0px 0px round 14px)', ease: 'power2.inOut', duration: 0.9 }, 0.05)
       tl.fromTo(q('.mf-card img'), { scale: 1.45 }, { scale: 1, ease: 'power2.inOut', duration: 0.9 }, 0.05)

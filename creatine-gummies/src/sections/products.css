@@ -30,12 +30,12 @@
   position: absolute;
   inset: 0;
   background: var(--card);
-  clip-path: circle(0% at 50% 45%);
-  transition: clip-path 0.9s var(--ease-out);
+  opacity: 0;
+  transition: opacity 0.7s ease;
 }
 
 .pg-card.on .pg-bg {
-  clip-path: circle(150% at 50% 45%);
+  opacity: 1;
 }
 
 .pg-wm {
@@ -196,8 +196,14 @@
 
 .pg-tags span {
   display: block;
+  overflow: hidden;
   padding: calc(7 * var(--u)) calc(14 * var(--u)) calc(3 * var(--u));
   transition: transform 0.6s var(--spring);
+}
+
+.pg-tags b {
+  display: block;
+  font-weight: inherit;
 }
 
 .pg-tags .t1 {
