@@ -1,0 +1,219 @@
+.hero-m {
+  height: auto;
+  background: transparent;
+}
+
+.hm {
+  position: relative;
+}
+
+.hm-stage {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.hm-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+}
+
+.hm-canvas .hero-gl {
+  touch-action: pan-y;
+}
+
+.hero-m .hl-word.hm-w {
+  position: absolute;
+  font-size: 24.5vw;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  z-index: 2;
+}
+
+.hero-m .w-clarity {
+  left: 3.5vw;
+}
+
+.hero-m .w-begins,
+.hero-m .w-here {
+  right: 3vw;
+}
+
+.hm-drag {
+  position: absolute;
+  right: 12px;
+  top: 70px;
+  z-index: 2;
+  padding: 6px 10px;
+  background: rgba(160, 190, 209, 0.14);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: rgba(196, 217, 230, 0.75);
+  white-space: nowrap;
+}
+
+.hm-cards {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  padding: 22px 16px 40px;
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(48, 40, 29, 0) 100%);
+}
+
+.hm-cards .mono {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: rgba(196, 217, 230, 0.92);
+}
+
+.hm-cards .mute,
+.hm-cards .t-key {
+  color: rgba(196, 217, 230, 0.45);
+}
+
+.hm-cards .mute-2 {
+  color: rgba(196, 217, 230, 0.36);
+}
+
+.hm-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 2px 6px;
+}
+
+.hm-stats,
+.hm-cold,
+.hm-check {
+  position: relative;
+  padding: 16px;
+}
+
+.hm-sig {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.hm-stats .dots {
+  position: static !important;
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  margin-top: 12px;
+}
+
+.hm-cold {
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hm-cold .cold-fill {
+  position: absolute;
+  left: 50%;
+  top: 44px;
+  width: 50%;
+  bottom: 0;
+}
+
+.hm-cold-top {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hm-cold .t-pct {
+  position: relative;
+  margin-top: 24px;
+}
+
+.hm-cold .dotted {
+  position: relative;
+  margin: 10px -16px 0;
+  height: 1.2px;
+}
+
+.hm-cold .t-stress {
+  position: relative;
+  margin-top: auto;
+  padding-top: 26px;
+  font-size: 24px;
+}
+
+.hm-cards .t-para {
+  position: relative;
+  margin: 8px 2px 6px;
+  font-size: 16px;
+  line-height: 1.38;
+  letter-spacing: -0.035em;
+}
+
+.hm-cards .t-para span {
+  white-space: normal;
+}
+
+.hm-check-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.hm .hm-check .t-check {
+  position: static;
+  font-size: 19px;
+}
+
+.hm-next {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.hm-check .chart {
+  position: static !important;
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  margin-top: 8px;
+}
+
+.hm-start {
+  position: relative;
+  height: 64px;
+  margin-top: 6px;
+}
+
+.hm-start .start-text {
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.hm-start .start-sq {
+  right: 6px;
+  top: 6px;
+  width: 52px;
+  height: 52px;
+}
+
+@media (min-width: 600px) {
+  .hm-cards {
+    grid-template-columns: 1fr 1fr;
+    padding: 28px 24px 56px;
+  }
+
+  .hm-row,
+  .hm-cards .t-para,
+  .hm-start {
+    grid-column: span 2;
+  }
+}

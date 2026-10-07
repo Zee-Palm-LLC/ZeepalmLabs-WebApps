@@ -1,0 +1,104 @@
+.foot {
+  position: relative;
+  padding-top: calc(120 * var(--u));
+  overflow: hidden;
+}
+
+.crisis {
+  display: grid;
+  grid-template-columns: calc(261.8 * var(--u)) 1fr;
+  gap: calc(24 * var(--u));
+  align-items: center;
+  padding: calc(22 * var(--u)) calc(24 * var(--u));
+  background: rgba(255, 190, 150, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 190, 150, 0.2);
+}
+
+.crisis-k {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(10 * var(--u));
+  color: #ffd2b5;
+}
+
+.crisis-k i {
+  width: calc(8 * var(--u));
+  height: calc(8 * var(--u));
+  border-radius: 50%;
+  background: #ffb38a;
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+.crisis p {
+  margin: 0;
+  font-size: calc(17 * var(--u));
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: rgba(255, 230, 214, 0.85);
+}
+
+.crisis b {
+  color: #fff;
+}
+
+.foot-grid {
+  display: grid;
+  grid-template-columns: calc(523.6 * var(--u)) repeat(3, 1fr);
+  margin-top: calc(110 * var(--u));
+}
+
+.foot-cta h2 {
+  font-size: calc(56 * var(--u));
+  margin-bottom: calc(30 * var(--u));
+}
+
+.foot-col {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--u));
+}
+
+.foot-col span {
+  margin-bottom: calc(8 * var(--u));
+}
+
+.foot-col a {
+  width: fit-content;
+  font-size: calc(17 * var(--u));
+  letter-spacing: -0.02em;
+  color: rgba(196, 217, 230, 0.8);
+  background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.5s var(--ease-out), color 0.3s ease;
+}
+
+.foot-col a:hover {
+  color: var(--ice);
+  background-size: 100% 1px;
+}
+
+.wordmark {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 calc(24 * var(--u));
+  margin-top: calc(90 * var(--u));
+  font-size: calc(452 * var(--u));
+  line-height: 0.74;
+  letter-spacing: -0.07em;
+  color: var(--ice);
+  filter: url(#melt);
+  user-select: none;
+}
+
+.wm-ch {
+  display: inline-block;
+  transform-origin: 50% 0;
+}
+
+.foot-base {
+  display: flex;
+  justify-content: space-between;
+  padding-top: calc(28 * var(--u));
+  padding-bottom: calc(28 * var(--u));
+  border-top: 1px solid rgba(196, 217, 230, 0.12);
+  margin-top: calc(10 * var(--u));
+}

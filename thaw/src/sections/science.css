@@ -1,0 +1,188 @@
+.science-title {
+  font-size: calc(96 * var(--u));
+  line-height: 0.92;
+  max-width: calc(980 * var(--u));
+}
+
+.science-title .hot {
+  color: var(--accent);
+}
+
+.methods {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: calc(96 * var(--u));
+  border-left: 1px solid rgba(196, 217, 230, 0.06);
+}
+
+.method {
+  display: flex;
+  flex-direction: column;
+  gap: calc(10 * var(--u));
+  min-height: calc(280 * var(--u));
+  padding: calc(24 * var(--u));
+  border-right: 1px solid rgba(196, 217, 230, 0.06);
+  transition: background 0.5s ease;
+}
+
+.method:hover {
+  background: rgba(160, 190, 209, 0.18);
+}
+
+.method-k {
+  font-size: calc(64 * var(--u));
+  margin-bottom: calc(18 * var(--u));
+}
+
+.method p {
+  margin: auto 0 0;
+  font-size: calc(16 * var(--u));
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: rgba(196, 217, 230, 0.62);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: calc(96 * var(--u));
+  border-top: 1px solid rgba(196, 217, 230, 0.12);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: calc(10 * var(--u));
+  padding: calc(28 * var(--u)) calc(24 * var(--u)) 0 0;
+}
+
+.stat-v {
+  display: flex;
+  align-items: flex-start;
+  font-size: calc(110 * var(--u));
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-v i {
+  font-style: normal;
+  font-size: calc(32 * var(--u));
+  margin-left: calc(6 * var(--u));
+  color: var(--accent);
+}
+
+.curve {
+  margin-top: calc(110 * var(--u));
+  padding: calc(18 * var(--u)) calc(24 * var(--u)) calc(22 * var(--u));
+}
+
+.curve-head {
+  display: flex;
+  justify-content: space-between;
+  color: var(--ice);
+  margin-bottom: calc(26 * var(--u));
+}
+
+.curve-read {
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+.curve-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.curve-grid {
+  stroke: rgba(196, 217, 230, 0.09);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+
+.curve-x {
+  font-family: var(--mono);
+  font-size: 11px;
+  fill: rgba(196, 217, 230, 0.4);
+}
+
+.curve-area {
+  fill: rgba(160, 190, 209, 0.08);
+}
+
+.curve-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.4;
+  stroke-linejoin: round;
+}
+
+.cold-mark rect {
+  fill: var(--bg);
+  stroke: var(--ice);
+  stroke-width: 1.6;
+}
+
+.curve-now circle {
+  fill: var(--ice);
+}
+
+.curve-now .halo {
+  fill: rgba(196, 217, 230, 0.18);
+  animation: sig-pulse 1.6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.curve-legend {
+  display: flex;
+  gap: calc(28 * var(--u));
+  margin-top: calc(16 * var(--u));
+}
+
+.curve-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(8 * var(--u));
+}
+
+.curve-legend span:last-child {
+  margin-left: auto;
+}
+
+.lg-line {
+  width: calc(18 * var(--u));
+  height: 2px;
+  background: var(--accent);
+}
+
+.lg-cold {
+  width: calc(8 * var(--u));
+  height: calc(8 * var(--u));
+  box-shadow: inset 0 0 0 1.5px var(--ice);
+}
+
+.trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(24 * var(--u));
+  margin-top: calc(80 * var(--u));
+}
+
+.trust-item b {
+  display: block;
+  font-family: var(--display);
+  font-size: calc(26 * var(--u));
+  letter-spacing: -0.04em;
+  color: var(--ice);
+}
+
+.trust-item p {
+  margin: calc(10 * var(--u)) 0 0;
+  max-width: calc(340 * var(--u));
+  font-size: calc(16 * var(--u));
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: rgba(196, 217, 230, 0.6);
+}
