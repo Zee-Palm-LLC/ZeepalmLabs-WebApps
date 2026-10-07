@@ -1,5 +1,7 @@
 # THAW
 
+Live: [zeepalm-thaw.vercel.app](https://zeepalm-thaw.vercel.app)
+
 An AI mental health landing page built in React. The hero is a pixel-perfect recreation of a Dribbble design. The rest of the page extends that design into a full product story.
 
 ## Design credit
@@ -70,3 +72,7 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Deploy
+
+The site is the Vercel project `thaw`, with Root Directory `thaw` and the Vite preset. The project is not connected to Git, so to redeploy, deploy the latest commit of `main` to it.
