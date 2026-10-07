@@ -1,0 +1,231 @@
+.showcase {
+  position: relative;
+  background: #fff;
+}
+
+.sc-stage {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #fff;
+}
+
+.sc-c {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1440px;
+  height: 900px;
+  transform-origin: 0 0;
+}
+
+.sc-c > * {
+  position: absolute;
+}
+
+.sc-arc {
+  left: 0;
+  top: 0;
+  width: 1440px;
+  height: 600px;
+  overflow: visible;
+}
+
+.arc-text {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 132px;
+  letter-spacing: -0.012em;
+  fill: var(--ink);
+}
+
+.arc-ch {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.arc-ch.hot {
+  fill: var(--accent);
+}
+
+.sc-can {
+  left: 640px;
+  top: 155px;
+  width: 165px;
+  height: 380px;
+}
+
+.sc-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1440px;
+  height: 900px;
+  z-index: 6;
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+.sc-badge {
+  position: absolute;
+  left: 532px;
+  top: 300px;
+  width: 88px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 12px 28px -14px rgba(0, 0, 0, 0.35);
+}
+
+.sc-photo {
+  margin: 0;
+  width: 216px;
+  height: 216px;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: left 0.9s var(--ease-out), top 0.9s var(--ease-out), transform 0.5s var(--ease-out);
+  box-shadow: 0 18px 40px -26px rgba(0, 0, 0, 0.45);
+}
+
+.sc-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-out);
+}
+
+.sc-photo:hover {
+  transform: rotate(-3deg) scale(1.04);
+}
+
+.sc-photo:hover img {
+  transform: scale(1.08);
+}
+
+.sc-copy {
+  left: 0;
+  top: 625px;
+  width: 1440px;
+  text-align: center;
+}
+
+.sc-icons {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  color: var(--accent);
+  transition: color 0.6s ease;
+}
+
+.sc-copy h3 {
+  margin: 27px 0 12px;
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 26px;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+  transition: color 0.6s ease;
+}
+
+.sc-copy p {
+  margin: 0;
+  font-size: 15.6px;
+  line-height: 23px;
+  letter-spacing: -0.01em;
+  color: #5d5d5d;
+}
+
+.sc-dots {
+  left: 1388px;
+  top: 380px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sc-dots li {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e2e2e2;
+  transition: background 0.5s ease, transform 0.5s var(--spring);
+}
+
+.sc-dots li.on {
+  background: var(--c);
+  transform: scale(1.6);
+}
+
+.showcase.m .sc-arc {
+  width: 430px;
+  height: 420px;
+}
+
+.showcase.m .arc-text {
+  font-size: 58px;
+}
+
+.showcase.m .sc-can {
+  left: 158px;
+  top: calc(var(--H) * 0.25);
+  width: 114px;
+  height: calc(var(--H) * 0.28);
+}
+
+.showcase.m .sc-badge {
+  left: 104px;
+  top: calc(var(--H) * 0.33);
+  width: 60px;
+  height: 60px;
+}
+
+.showcase.m .sc-badge svg {
+  width: 46px;
+  height: 46px;
+}
+
+.showcase.m .sc-photo {
+  width: 112px;
+  height: 112px;
+}
+
+.showcase.m .sc-copy {
+  top: calc(var(--H) - 268px);
+  width: 430px;
+  padding: 0 28px;
+}
+
+.showcase.m .sc-copy p {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.showcase.m .sc-copy p br {
+  display: none;
+}
+
+.showcase.m .sc-copy h3 {
+  margin-top: 16px;
+  font-size: 21px;
+}
+
+.showcase.m .sc-icons svg {
+  width: 26px;
+  height: 26px;
+}
+
+.showcase.m .sc-dots {
+  left: 412px;
+  top: calc(var(--H) * 0.3);
+  gap: 10px;
+}
+
+.showcase.m .sc-dots li {
+  width: 6px;
+  height: 6px;
+}
