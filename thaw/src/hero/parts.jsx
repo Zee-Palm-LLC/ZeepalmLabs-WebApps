@@ -43,7 +43,7 @@ export function DotMatrix() {
   return (
     <svg className="dots" viewBox={`0 0 ${10.232 * 22 + 6} ${9.38 * 3 + 6}`} style={{ left: L.dots.x - 3, top: L.dots.y - 3, width: 10.232 * 22 + 6, height: 9.38 * 3 + 6 }} aria-hidden="true">
       {DOT_ROWS.map((row, r) =>
-        [...row].map((v, c) => <circle key={`${r}-${c}`} className={`dot lv${v}`} data-r={r} data-c={c} data-v={v} cx={3 + c * 10.232} cy={3 + r * 9.38} r={1.45} />)
+        [...row].map((v, c) => <circle key={`${r}-${c}`} className={`dot lv${v}`} data-r={r} data-c={c} data-v={v} cx={3 + c * 10.232} cy={3 + r * 9.38} r={2.05} />)
       )}
     </svg>
   )

@@ -39,7 +39,7 @@ function HeroDesktop() {
           This week
         </div>
 
-        <div className="panel stats" style={{ left: L.stats.x, top: L.stats.y, width: L.stats.w, height: L.stats.h }} data-a="panel">
+        <div className="panel p-stats" style={{ left: L.stats.x, top: L.stats.y, width: L.stats.w, height: L.stats.h }} data-a="panel">
           <span className="panel-sheen" />
         </div>
         {SIGNALS.map(([k, v], i) => (
