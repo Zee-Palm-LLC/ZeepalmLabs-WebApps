@@ -1,5 +1,7 @@
 # Sana-AI
 
+Live: [zeepalm-sana-ai.vercel.app](https://zeepalm-sana-ai.vercel.app)
+
 A health assistant chatbot built in React. It recreates a Dribbble AI chatbot design pixel for pixel, with the content changed from crypto to health, and a working conversation behind it.
 
 ## Design credit
@@ -70,3 +72,7 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Deploy
+
+The site is the Vercel project `sana-ai`, with Root Directory `sana-ai` and the Vite preset. The project is not connected to Git, so to redeploy, deploy the latest commit of `main` to it.
