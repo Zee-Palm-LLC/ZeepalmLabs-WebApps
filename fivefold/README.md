@@ -1,5 +1,7 @@
 # Fivefold
 
+Live: [zeepalm-fivefold.vercel.app](https://zeepalm-fivefold.vercel.app)
+
 A landing page for a health and fitness coaching brand, built in React. It recreates the layout, type, colours, motion and scroll flow of the site shown in a short screen-recorded reel, rethemed from creative workshops to training. Every part of it works.
 
 ## Credit
@@ -62,3 +64,7 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Deploy
+
+The site is the Vercel project `fivefold`, with Root Directory `fivefold` and the Vite preset. The project is not connected to Git, so to redeploy, deploy the latest commit of `main` to it.
