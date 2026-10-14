@@ -17,6 +17,7 @@ export const VARIETIES = [
     membrane: '#ffe6bd',
     attenuation: '#ff8a1c',
     glow: 'rgba(255, 150, 60, 0.35)',
+    gpu: { flesh: [1.0, 0.4, 0.04], fleshD: 3.2, pith: [0.99, 0.93, 0.8], rind: [1.0, 0.36, 0.02], rindD: 5, membrane: [1.0, 0.95, 0.88] },
   },
   {
     id: 'blood',
@@ -36,6 +37,7 @@ export const VARIETIES = [
     membrane: '#ffe6dc',
     attenuation: '#e53a24',
     glow: 'rgba(235, 70, 50, 0.32)',
+    gpu: { flesh: [0.92, 0.1, 0.05], fleshD: 3.0, pith: [0.98, 0.9, 0.82], rind: [0.97, 0.34, 0.07], rindD: 5, membrane: [1.0, 0.92, 0.88] },
   },
   {
     id: 'lemon',
@@ -55,5 +57,6 @@ export const VARIETIES = [
     membrane: '#fffbe6',
     attenuation: '#f2d23a',
     glow: 'rgba(240, 210, 60, 0.32)',
+    gpu: { flesh: [1.0, 0.84, 0.14], fleshD: 3.0, pith: [0.99, 0.97, 0.86], rind: [1.0, 0.8, 0.06], rindD: 5, membrane: [1.0, 0.98, 0.9] },
   },
 ]

@@ -10,9 +10,9 @@ Based on the "Citrus Jelly" material study shared by Vib3Coded ([@vib3coded](htt
 
 ## What it does
 
-- **The slice** is a real 3D mesh: a half-disc with rounded edges, a peel ring, white pith and ten pulp segments, painted from a texture generated in code. It drops onto the table when the page opens.
-- **Grab it** anywhere and drag. The slice stretches, folds and wobbles, then springs back when you let go. It is a soft body: a lattice of points joined by springs, solved several times per frame, with the mesh bent along with it.
-- **Variety** switches between Orange, Blood Orange and Lemon. Each one changes the colours and the nutrition facts, and gives the slice a little bounce.
+- **The slice** is a rounded half-moon of jelly with three zones: translucent fruit flesh inside, a pale pith band and a thin glossy rind along the arc. Inside it there are milky membranes between the segments, a few seeds, small air bubbles with a bright rim and pin-point highlight, and tiny sugar-crystal glints.
+- **Grab it** anywhere with the mouse or a finger and pull. It stretches and folds, and when you let go it wobbles back into shape and settles in the middle.
+- **Variety** switches between Orange, Blood Orange and Lemon. Each one changes the flesh, pith and rind colours, the tinted shadow, and the nutrition facts.
 
   | Variety | Benefit | Per slice |
   | --- | --- | --- |
@@ -20,13 +20,40 @@ Based on the "Citrus Jelly" material study shared by Vib3Coded ([@vib3coded](htt
   | Blood Orange | Antioxidant recovery | Anthocyanins 40 mg, vitamin C 60 mg |
   | Lemon | Electrolyte hydration | Potassium 120 mg, sodium 80 mg |
 
-- **Firmness** and **Internal damping** change how stiff and how wobbly the jelly is, live.
-- **Give it a nudge** bounces the slice, **Reset** puts it back, **Pause** freezes it.
-- **Show mesh** draws the wireframe, and **¼ speed** plays the physics in slow motion.
+- **Firmness** (log-mapped compliance) and **Internal damping** change the material live.
+- **Give it a nudge** makes it hop with a twist, **Reset** drops it back in, **Pause** freezes it. Keys: Space pauses, N nudges, R resets.
+- **Show mesh** draws the simulation's tetrahedra over the slice, and **¼ speed** plays the physics in slow motion.
 - **Shop the jar** adds a jar to the bag, with a counter and a confirmation.
-- **Fullscreen** button in the corner.
 
 The nutrition values are illustrative.
+
+## How the jelly works
+
+**Physics** (`src/jelly/gpu/softbody.js`): an XPBD tetrahedral soft body.
+
+- **Mesh:** the half-moon profile is triangulated with a Bowyer–Watson Delaunay, extruded into prisms and split into about 1,400 tets.
+- **Constraints**, solved with many small substeps (12 per frame, one iteration each):
+  - co-rotational shape matching per tet, with a warm-started quaternion (Müller 2016), which also recovers inverted tets;
+  - volume preservation;
+  - edge compliance;
+  - hard strain limits between 0.35× and 1.8×.
+- **Damping:** along the edges, plus light air drag and a settling pass that removes leftover jitter.
+- **Floor contact:** Coulomb-style friction. A held patch is lifted rather than crushed into the floor.
+- **Grab:** a soft attachment of the patch around the picked point, with a bounded reach.
+- **Safety:** the slice resets if the simulation ever becomes invalid.
+
+**Rendering** (`src/jelly/gpu/shaders.js`), in WebGPU:
+
+- **Studio:** a procedural cyclorama paper sweep with an overhead softbox, a back-left strip light and a front-right fill card.
+- **Shadows:** soft PCSS floor shadows, tinted by the jelly's colour.
+- **The jelly:**
+  - a back-face pass gives the thickness along each view ray, which drives Beer–Lambert absorption;
+  - the scene behind is refracted through the slice;
+  - inside, a 24-step march through the undeformed slice draws the zones, membranes, seeds, bubbles and glints, so they bend with the jelly;
+  - studio reflections use Fresnel, plus a key highlight.
+- **Post:** exposure, Khronos PBR Neutral tone mapping, sRGB and dither.
+
+Browsers without WebGPU get the earlier Three.js version of the slice, so the page still works everywhere.
 
 ## Phones
 

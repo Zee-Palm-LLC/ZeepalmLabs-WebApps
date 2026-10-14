@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import JellyScene from './jelly/JellyScene.js'
 import { VARIETIES } from './lib/varieties.js'
 
 function SliceIcon({ v }) {
@@ -47,28 +46,89 @@ export default function App() {
   const [touched, setTouched] = useState(false)
   const v = VARIETIES[variety]
 
+  const live = useRef({})
+  live.current = { variety, firmness, damping, paused, mesh, slow }
+
   useEffect(() => {
-    const s = new JellyScene(canvas.current, VARIETIES[0])
-    scene.current = s
-    const off = s.on((type, val) => {
-      if (type === 'grab') {
-        setGrabbing(val)
-        if (val) setTouched(true)
+    let alive = true
+    let s = null
+    let off = null
+    const boot = async () => {
+      try {
+        const { default: GpuJelly } = await import('./jelly/gpu/GpuJelly.js')
+        const device = await GpuJelly.device()
+        if (!alive) {
+          device.destroy()
+          return
+        }
+        s = new GpuJelly(canvas.current, device, VARIETIES[live.current.variety])
+      } catch {
+        if (!alive) return
+        const { default: JellyScene } = await import('./jelly/JellyScene.js')
+        s = new JellyScene(canvas.current, VARIETIES[live.current.variety])
       }
-    })
-    window.__jelly = s
+      if (!alive) {
+        s.dispose()
+        return
+      }
+      const c = live.current
+      s.setFirmness(c.firmness)
+      s.setDamping(c.damping)
+      s.setPaused(c.paused)
+      s.setShowMesh(c.mesh)
+      s.setSlow(c.slow)
+      off = s.on((type, val) => {
+        if (type === 'grab') {
+          setGrabbing(val)
+          if (val) setTouched(true)
+        }
+      })
+      scene.current = s
+      window.__jelly = s
+    }
+    boot()
     return () => {
-      off()
-      s.dispose()
+      alive = false
+      off && off()
+      s && s.dispose()
       scene.current = null
     }
   }, [])
 
-  useEffect(() => scene.current && scene.current.setFirmness(firmness), [firmness])
-  useEffect(() => scene.current && scene.current.setDamping(damping), [damping])
-  useEffect(() => scene.current && scene.current.setPaused(paused), [paused])
-  useEffect(() => scene.current && scene.current.setShowMesh(mesh), [mesh])
-  useEffect(() => scene.current && scene.current.setSlow(slow), [slow])
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.target.closest && e.target.closest('input, textarea, select')) return
+      const s = scene.current
+      if (!s) return
+      if (e.code === 'Space') {
+        e.preventDefault()
+        setPaused((p) => !p)
+      } else if (e.key === 'n' || e.key === 'N') s.nudge(1)
+      else if (e.key === 'r' || e.key === 'R') {
+        s.reset()
+        setFirmness(0.4)
+        setDamping(0.45)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
+  useEffect(() => {
+    if (scene.current) scene.current.setFirmness(firmness)
+  }, [firmness])
+  useEffect(() => {
+    if (scene.current) scene.current.setDamping(damping)
+  }, [damping])
+  useEffect(() => {
+    if (scene.current) scene.current.setPaused(paused)
+  }, [paused])
+  useEffect(() => {
+    if (scene.current) scene.current.setShowMesh(mesh)
+  }, [mesh])
+  useEffect(() => {
+    if (scene.current) scene.current.setSlow(slow)
+  }, [slow])
 
   useEffect(() => {
     document.documentElement.style.setProperty('--glow', v.glow)
