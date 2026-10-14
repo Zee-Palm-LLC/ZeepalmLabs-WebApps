@@ -1,5 +1,7 @@
 # Vitamin Jelly
 
+Live: [zeepalm-vitamin-jelly.vercel.app](https://zeepalm-vitamin-jelly.vercel.app)
+
 A one-page product site for sugar-free vitamin jelly slices, built around a 3D citrus slice you can grab, stretch and let go.
 
 ## Credit
@@ -44,3 +46,7 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Deploy
+
+The site is the Vercel project `vitamin-jelly`, with Root Directory `vitamin-jelly` and the Vite preset. The project is not connected to Git, so to redeploy, deploy the latest commit of `main` to it.
