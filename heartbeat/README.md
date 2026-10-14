@@ -1,5 +1,7 @@
 # Heart Beat
 
+Live: [zeepalm-heartbeat.vercel.app](https://zeepalm-heartbeat.vercel.app)
+
 A living 3D heart you can hold. Pick a pace, squeeze it, and feel the pulse. It's No. 011 in the same studio series as [Vitamin Jelly](../vitamin-jelly).
 
 ## What it does
@@ -70,3 +72,7 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Deploy
+
+The site is the Vercel project `heartbeat`, with Root Directory `heartbeat` and the Vite preset. The project is not connected to Git, so to redeploy, deploy the latest commit of `main` to it.
