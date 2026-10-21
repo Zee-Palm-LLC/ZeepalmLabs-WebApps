@@ -111,7 +111,7 @@ export function VitalsPanel() {
 export function NewsList() {
   return (
     <div className="hud news">
-      <h4>NEWS</h4>
+      <h4>UPCOMING</h4>
       <ul>
         {NEWS.map((n) => (
           <li key={n.date}><a href="#news"><div className="d">{n.date}</div><div className="t">{n.title}</div></a></li>
