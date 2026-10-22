@@ -3,6 +3,7 @@ import { Card, T, At } from '../ui/prim.jsx'
 import { Icon, Glyph } from '../ui/icons.jsx'
 import { PageTitle, UserPill } from '../shell/PageHeader.jsx'
 import { DETAILS } from './mealDetails.js'
+import { MBlock, useCompact } from '../ui/mobile.jsx'
 
 export const H = 1247
 
@@ -17,6 +18,153 @@ export default function MealDetail({ param }) {
   const [openIng, setOpenIng] = useState(true)
   const [openNut, setOpenNut] = useState(true)
   const [done, setDone] = useState({})
+  const compact = useCompact()
+  if (compact) {
+    const fold = (open, toggle, label) => (
+      <button className={`m-back fold-btn ${open ? '' : 'is-closed'}`} onClick={toggle} aria-label={label} style={{ transform: open ? 'none' : 'rotate(180deg)', transition: 'transform .3s' }}>
+        <Icon name="up" size={15} sw={1.7} />
+      </button>
+    )
+    return (
+      <>
+        <PageTitle title="Detail Menu" back={{ label: 'Back to List Menu', to: '/meal-plan' }} />
+        <MBlock i={0} className="m-hero">
+          <img src={d.img} alt={d.title.join(' ')} draggable="false" />
+          <div className="m-row" style={{ marginTop: 12 }}>
+            <span className="m-tag blue">{d.tag}</span>
+            <span className="m-rating" style={{ marginLeft: 'auto' }}>
+              <Icon name="starfill" size={14} />
+              {d.rating}
+            </span>
+          </div>
+          <h2>{d.title.join(' ')}</h2>
+          <p>{d.about.join(' ')}</p>
+          <div className="m-info">
+            {d.info.map(([ic, k, v]) => (
+              <div key={k}>
+                <span className="m-ico">{ic === 'level' ? <Glyph n="level" cx={0} cy={0} k={1.1} ox={0} oy={0} /> : <Icon name={ic} size={16} sw={1.6} />}</span>
+                <span>
+                  <span>{k}</span>
+                  <b>{v}</b>
+                </span>
+              </div>
+            ))}
+          </div>
+        </MBlock>
+        <MBlock i={1}>
+          <div className="m-stats" style={{ marginTop: 0, gridTemplateColumns: 'repeat(4, 1fr)' }}>
+            {d.macros.map(([k, v, u]) => (
+              <div key={k} className="m-stat" style={{ background: '#d9eeff', textAlign: 'center' }}>
+                <b>{Math.round(v * servings)}</b>
+                <span>
+                  {k} · {u}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="m-sep" />
+          <div className="m-row">
+            <span className="m-ico" style={{ background: 'var(--yellow)' }}>
+              <Glyph n="bowl" cx={0} cy={0} k={0.8} ox={0} oy={0} />
+            </span>
+            <span className="m-sub" style={{ flex: 1 }}>Total Servings</span>
+            <span className="m-title" style={{ minWidth: 20, textAlign: 'center' }}>
+              {servings}
+            </span>
+            <button className="m-back" aria-label="Fewer servings" onClick={() => setServings((v) => Math.max(1, v - 1))}>
+              <Icon name="minus" size={15} sw={1.8} />
+            </button>
+            <button className="m-back" style={{ background: 'var(--green)' }} aria-label="More servings" onClick={() => setServings((v) => Math.min(8, v + 1))}>
+              <Icon name="plus" size={15} sw={1.8} />
+            </button>
+          </div>
+          <div className="m-sep" />
+          <div className="m-head" style={{ marginBottom: 0 }}>
+            <span className="m-h">Ingredients</span>
+            {fold(openIng, () => setOpenIng((v) => !v), 'Toggle ingredients')}
+          </div>
+          {openIng ? (
+            <ul className="m-list">
+              {d.ingredients.map((t) => (
+                <li key={t}>{servings > 1 ? scale(t, servings) : t}</li>
+              ))}
+            </ul>
+          ) : null}
+        </MBlock>
+        <MBlock i={2}>
+          <div className="m-h" style={{ marginBottom: 4 }}>
+            Directions
+          </div>
+          {d.steps.map(([title, lines], i) => (
+            <button key={title} className={`m-step ${done[i] ? 'done' : ''}`} onClick={() => setDone((x) => ({ ...x, [i]: !x[i] }))}>
+              <span className="m-step-n">{done[i] ? <Icon name="tick" size={15} sw={2} /> : i + 1}</span>
+              <span>
+                <span className="m-title">{title}</span>
+                <p>{lines.join(' ')}</p>
+              </span>
+            </button>
+          ))}
+          <div className="m-sep" />
+          <div className="m-h">Tools and Equipments</div>
+          <ul className="m-list">
+            {d.tools.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+          <div className="m-sep" />
+          <div className="m-h">Notes</div>
+          <ul className="m-list">
+            {d.notes.map((l, i) => (
+              <li key={i}>{l.join(' ')}</li>
+            ))}
+          </ul>
+        </MBlock>
+        <MBlock i={3}>
+          <div className="m-head" style={{ marginBottom: 6 }}>
+            <span className="m-h">Nutrition Facts</span>
+            {fold(openNut, () => setOpenNut((v) => !v), 'Toggle nutrition facts')}
+          </div>
+          <div className="m-row" style={{ justifyContent: 'space-between', padding: '6px 0', fontWeight: 600, fontSize: 15.5 }}>
+            <span>Calories</span>
+            <span>{d.macros[0][1] * servings}</span>
+          </div>
+          {openNut
+            ? d.nutrition.map(([k, v, bold]) => (
+                <div key={k} className="m-row" style={{ justifyContent: 'space-between', padding: '9px 0', borderTop: '1px solid #eeeeef', paddingLeft: bold ? 0 : 16, fontWeight: bold ? 600 : 400, color: bold ? 'var(--ink)' : 'var(--ink2)' }}>
+                  <span>{k}</span>
+                  <span style={{ fontWeight: 600, color: 'var(--ink)' }}>{v}</span>
+                </div>
+              ))
+            : null}
+        </MBlock>
+        <MBlock i={4}>
+          <div className="m-h" style={{ marginBottom: 4 }}>
+            Reviews
+          </div>
+          {reviews.map(([name, rate, img, lines], i) => (
+            <div key={name}>
+              {i ? <div className="m-sep" /> : null}
+              <div className="m-row" style={{ marginTop: i ? 0 : 8 }}>
+                <span className="m-av" style={{ width: 38, height: 38 }}>
+                  <img src={img} alt="" draggable="false" />
+                </span>
+                <span>
+                  <span className="m-title" style={{ display: 'block', fontSize: 14.5 }}>
+                    {name}
+                  </span>
+                  <span className="m-rating">
+                    <Icon name="starfill" size={12} />
+                    {rate}
+                  </span>
+                </span>
+              </div>
+              <p style={{ margin: '8px 0 0', fontSize: 13.5, lineHeight: 1.5, color: 'var(--ink2)' }}>{lines.join(' ')}</p>
+            </div>
+          ))}
+        </MBlock>
+      </>
+    )
+  }
   return (
     <>
       <PageTitle title="Detail Menu" back={{ label: 'Back to List Menu', to: '/meal-plan' }} />

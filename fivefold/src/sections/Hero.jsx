@@ -41,16 +41,20 @@ export default function Hero() {
       const floats = gsap.utils.toArray('.hcard__float')
       const still = reducedMotion()
 
-      const intro = gsap.timeline({ delay: 0.15, onComplete: () => setState({ ready: true }) })
-      intro
-        .to(document.querySelector('.veil'), { opacity: 0, duration: 1.4, ease: 'power2.out' }, 0)
-        .add(() => introTo(1, 2.2), 0)
-        .fromTo(document.querySelectorAll('[data-intro="nav"] > :not(.menu)'), { y: -18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, stagger: 0.06, ease: 'power3.out' }, 0.25)
-        .fromTo('.hero__title .l1 .ch', { yPercent: 108 }, { yPercent: 0, duration: 1.1, stagger: 0.045, ease: 'power4.out' }, 0.35)
-        .fromTo('.hero__title .l2 .ch', { yPercent: 108 }, { yPercent: 0, duration: 1.1, stagger: 0.06, ease: 'power4.out' }, 0.62)
-        .fromTo(floats, { y: () => window.innerHeight * 0.6, rotation: (i) => (i % 2 ? 9 : -9), opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 1.5, stagger: { each: 0.08, from: 'center' }, ease: 'expo.out' }, 0.55)
-        .fromTo('.hero__lede, .hero__more', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: 'power3.out' }, 1.1)
-      if (still) intro.progress(1)
+      const build = () => {
+        const intro = gsap.timeline({ delay: 0.15, onComplete: () => setState({ ready: true }) })
+        intro
+          .to(document.querySelector('.veil'), { opacity: 0, duration: 1.4, ease: 'power2.out' }, 0)
+          .add(() => introTo(1, 2.2), 0)
+          .fromTo(document.querySelectorAll('[data-intro="nav"] > :not(.menu)'), { y: -18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, stagger: 0.06, ease: 'power3.out' }, 0.25)
+          .fromTo('.hero__title .l1 .ch', { yPercent: 108 }, { yPercent: 0, duration: 1.1, stagger: 0.045, ease: 'power4.out' }, 0.35)
+          .fromTo('.hero__title .l2 .ch', { yPercent: 108 }, { yPercent: 0, duration: 1.1, stagger: 0.06, ease: 'power4.out' }, 0.62)
+          .fromTo(floats, { y: () => window.innerHeight * 0.6, rotation: (i) => (i % 2 ? 9 : -9), opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 1.5, stagger: { each: 0.08, from: 'center' }, ease: 'expo.out' }, 0.55)
+          .fromTo('.hero__lede, .hero__more', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: 'power3.out' }, 1.1)
+        if (still) intro.progress(1)
+      }
+      if (new URLSearchParams(window.location.search).has('film')) window.__filmStart = build
+      else build()
 
       if (!still) {
         floats.forEach((f, i) => {

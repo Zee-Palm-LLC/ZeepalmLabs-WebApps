@@ -3,6 +3,7 @@ import { Card, T, At, Layer } from '../ui/prim.jsx'
 import { Icon, Glyph } from '../ui/icons.jsx'
 import { PageTitle, UserPill } from '../shell/PageHeader.jsx'
 import { goto } from '../nav.js'
+import { MBlock, useCompact } from '../ui/mobile.jsx'
 
 export const H = 1040
 
@@ -49,11 +50,90 @@ export default function ClassDetail() {
   const [playing, setPlaying] = useState(false)
   const [doneMoves, setDoneMoves] = useState({ 0: true })
   const [copied, setCopied] = useState(false)
+  const compact = useCompact()
   return (
     <>
       <PageTitle title="Class Details" back={{ label: 'Back to Class List', to: '/' }} />
       <UserPill />
 
+      {compact ? (
+        <MBlock i={0} className="m-hero m-class">
+          <div className="m-head" style={{ alignItems: 'flex-start' }}>
+            <div>
+              <h2 style={{ margin: 0 }}>Strength &amp; Conditioning</h2>
+              <span className="m-sub">
+                Strength Training ·{' '}
+                <button className="m-sub" style={{ color: 'var(--ink)', textDecoration: 'underline' }} onClick={() => goto('/trainers/jordan-reed')}>
+                  Jordan Reed
+                </button>
+              </span>
+            </div>
+            <div style={{ textAlign: 'right', flex: 'none' }}>
+              <div className="m-title" style={{ fontSize: 18 }}>
+                $59.99
+              </div>
+              <span className="m-sub">full course</span>
+            </div>
+          </div>
+          <div style={{ position: 'relative' }}>
+            <img src="/img/class-video.jpg" alt="Strength and Conditioning class preview" draggable="false" style={{ height: 200 }} />
+            <button className={`m-play ${playing ? 'on' : ''}`} aria-label={playing ? 'Pause preview' : 'Play preview'} onClick={() => setPlaying((v) => !v)}>
+              <Icon name="play" size={20} sw={1.8} />
+            </button>
+          </div>
+          <div className="m-info">
+            {STATS.map(([ic, a, b]) => (
+              <div key={a}>
+                <span className="m-ico">{ic === 'level' || ic === 'flamesm' ? <Glyph n={ic} cx={0} cy={0} k={ic === 'level' ? 1.1 : 1} ox={0} oy={0} /> : <Icon name={ic === 'gauge' ? 'speed' : ic} size={16} sw={1.6} />}</span>
+                <span>
+                  <span>{b}</span>
+                  <b>{a}</b>
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="m-row" style={{ marginTop: 14 }}>
+            <button
+              className={`m-back ${copied ? 'on' : ''}`}
+              aria-label="Share class"
+              onClick={() => {
+                setCopied(true)
+                setTimeout(() => setCopied(false), 1400)
+              }}
+            >
+              <Icon name={copied ? 'tick' : 'share'} size={17} sw={1.7} />
+            </button>
+            <button className="m-back" style={saved ? { background: 'var(--green)' } : null} aria-label="Save class" onClick={() => setSaved((v) => !v)}>
+              <Icon name="bookmark" size={17} sw={1.7} />
+            </button>
+            <button className={`m-add ${taken ? 'added' : ''}`} style={{ flex: 1, height: 40, borderRadius: 20 }} onClick={() => setTaken((v) => !v)}>
+              {taken ? 'Enrolled ✓' : 'Take Class'}
+            </button>
+          </div>
+          <div className="m-sep" />
+          <div className="m-h">About The Class</div>
+          <p style={{ marginTop: 6 }}>{ABOUT.join(' ')}</p>
+          <div className="m-sep" />
+          <div className="m-h">Equipments</div>
+          <ul className="m-list">
+            {EQUIP.flat()
+              .filter(Boolean)
+              .map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+          </ul>
+          <div className="m-sep" />
+          <div className="m-h">Benefits</div>
+          <ul className="m-list">
+            {BENEFITS.flat()
+              .filter(Boolean)
+              .map((l) => (
+                <li key={l[0]}>{l.join(' ')}</li>
+              ))}
+          </ul>
+        </MBlock>
+      ) : null}
+      {compact ? null : (
       <Card x={252.9} y={83.8} w={793.3} h={906.2} className="cd-card">
         <T x={269.2} b={119.5} s={22.5} w={500} c="var(--ink)">
           Strength &amp; Conditioning
@@ -166,6 +246,7 @@ export default function ClassDetail() {
           )
         )}
       </Card>
+      )}
 
       <T x={1062.6} b={103} s={16} w={500} c="var(--ink)">
         Exercises

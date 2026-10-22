@@ -108,7 +108,7 @@ canvas { display: block; }
 .vitals .vt-foot { margin-top: 8px; font-size: 8.5px; color: rgba(255,255,255,.4); letter-spacing: .04em; }
 
 /* hero heartbeat line */
-.pulse-line { position: absolute; left: 0; right: 0; top: 63%; height: 120px; pointer-events: none; z-index: 2; opacity: .55; mix-blend-mode: screen; }
+.pulse-line { position: absolute; left: 0; right: 0; width: 100%; top: 63%; height: 120px; pointer-events: none; z-index: 2; opacity: .55; mix-blend-mode: screen; }
 .pulse-line path { fill: none; stroke: url(#pl); stroke-width: 2; stroke-dasharray: 260 2600; animation: sweep 2.6s linear infinite; filter: drop-shadow(0 0 6px rgba(212,255,58,.9)); }
 .pulse-line .bed { stroke: rgba(212,255,58,.12); stroke-dasharray: none; animation: none; filter: none; }
 @keyframes sweep { from { stroke-dashoffset: 2860; } to { stroke-dashoffset: 0; } }
@@ -154,7 +154,7 @@ canvas { display: block; }
 /* ---------- Light sections ---------- */
 .light { background: var(--light); color: var(--ink); }
 /* curved leading edge of the light section = the dark→light bulge wipe in the reference */
-.about .wipe { position: absolute; left: -25vw; width: 150vw; top: -22vh; height: 44vh; background: var(--light); border-radius: 50% 50% 0 0 / 100% 100% 0 0; pointer-events: none; }
+.about .wipe { position: absolute; left: 0; width: 100%; top: -22vh; height: 44vh; background: var(--light); border-radius: 50% 50% 0 0 / 100% 100% 0 0; pointer-events: none; }
 .mission-text .line { will-change: transform; padding-bottom: .12em; }
 .crossgrid { position: absolute; inset: 0; color: rgba(255,255,255,.95); background-image:
   linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor);
@@ -230,4 +230,35 @@ canvas { display: block; }
   .labs-word { left: 20px; } .labs-word h2 { font-size: 92px; } .labs-body { left: 20px; right: 20px; font-size: 13px; top: calc(36% + 110px); }
   .vision-title { left: 20px; font-size: 64px; } .vision-lines { right: 20px; } .vision-lines span { font-size: 18px; }
   .mission-text { left: 20px; } .mission-text .big { font-size: 28px; }
+}
+
+/* ---------- Phone / 9:16 pass ---------- */
+@media (max-width: 600px) {
+  .header { height: 84px; }
+  .logo .word { font-size: 20px; }
+  .header-right { gap: 10px; }
+  .pill { height: 34px; padding: 0 14px; font-size: 11px; }
+  .sound-toggle { display: none; }
+  .vitals { right: 14px; top: 86px; width: 178px; padding: 10px 11px 8px; transform-origin: top right; }
+  .vitals canvas { width: 156px !important; }
+  .vitals .vt-bpm b { font-size: 26px; }
+  .news { bottom: 28px; }
+  .work-info .title { font-size: 46px; }
+  .vision-title { top: 110px; font-size: 96px; }
+  .vision-cap { top: 220px; left: 22px; }
+  .vision-lines { right: auto; left: 20px; top: 60%; align-items: flex-start; }
+  .vision-lines span { font-size: 26px; }
+  .vision-small { left: 22px; bottom: 70px; }
+  .mission-text .big { font-size: 40px; }
+  .svc-copy h3 { font-size: 44px; margin-bottom: 14px; }
+  .labs-word { gap: 14px; top: 30%; }
+  .labs-word h2 { font-size: 70px; }
+  .labs-word .arrow { width: 40px; height: 40px; margin-top: 10px; }
+  .labs-word .sparkle { width: 40px; height: 40px; top: -46px; }
+  .labs-body { top: calc(30% + 96px); font-size: 13px; line-height: 1.6; }
+  .labs-side { display: block; left: 20px; right: 20px; width: auto; bottom: 60px; }
+  .footer-nav { left: 20px; bottom: 64px; grid-template-columns: 84px 88px 1fr; }
+  .footer-right { left: 20px; right: 20px; bottom: 190px; align-items: flex-start; }
+  .footer-right .row { gap: 22px; }
+  .copyright { right: 20px; bottom: 18px; font-size: 17px; }
 }

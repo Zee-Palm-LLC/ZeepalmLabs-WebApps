@@ -21,7 +21,8 @@ function WarpPanel({ prog }) {
     uniforms.uTime.value = s.clock.elapsedTime;
     uniforms.uWarp.value = lerp(1.15, 0.55, g) + Math.sin(s.clock.elapsedTime * 0.8) * 0.08;
     uniforms.uSplit.value = lerp(2.2, 0.6, g);
-    mesh.current.scale.set(lerp(0.42, 1.55, g), lerp(0.62, 1.55, g), 1);
+    const fit = Math.min(1, (s.viewport.width / s.viewport.height) / 1.6); // keep the word inside the panel in portrait
+    mesh.current.scale.set(lerp(0.42, 1.55, g) * fit, lerp(0.62, 1.55, g) * fit, 1);
     mesh.current.rotation.set(lerp(0.05, 0, g), lerp(-0.25, 0, g), lerp(-0.12, 0, g));
     uniforms.uOpacity.value = 1 - ss(0.86, 1, p);
   });

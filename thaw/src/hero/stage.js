@@ -290,12 +290,20 @@ export function createStage(canvas, { stillSrc = '/media/head-still.webp', video
 
   let turnTween = null
   let pendingTurn = false
+  const FILM = new URLSearchParams(window.location.search).has('film')
+  let filmTurn = null
   const turn = () => {
     if (!state.videoReady) {
       pendingTurn = true
       return
     }
     pendingTurn = false
+    if (FILM) {
+      video.pause()
+      filmTurn = { t0: state.time }
+      state.mixT = 1
+      return
+    }
     video.currentTime = 0
     video.playbackRate = 1
     const go = () => {
@@ -426,6 +434,16 @@ export function createStage(canvas, { stillSrc = '/media/head-still.webp', video
     state.mouse = state.mouse[0] < -9000 ? state.mouseT : [state.mouse[0] + (state.mouseT[0] - state.mouse[0]) * k * 1.4, state.mouse[1] + (state.mouseT[1] - state.mouse[1]) * k * 1.4]
     state.heat += (state.heatT - state.heat) * k * 0.6
     state.ripple += (state.rippleT - state.ripple) * k * 0.8
+    if (filmTurn && !drag) {
+      const t = state.time - filmTurn.t0
+      const d = video.duration || 5
+      if (t >= d - 0.03) {
+        filmTurn = null
+        state.mixT = 0
+      } else if (!video.seeking) {
+        video.currentTime = t
+      }
+    }
     state.mix += (state.mixT - state.mix) * Math.min(1, dt * (state.mixT > state.mix ? 14 : 7))
     if (state.glintAuto !== false) {
       state.glint = ((state.time * 0.16) % 2.2) - 0.4
@@ -492,6 +510,7 @@ export function createStage(canvas, { stillSrc = '/media/head-still.webp', video
     state,
     video,
     turn,
+    whenSeeked: () => (video.seeking ? new Promise((r) => video.addEventListener('seeked', r, { once: true })) : Promise.resolve()),
     settle() {
       state.melt = 1
       state.mix = 0

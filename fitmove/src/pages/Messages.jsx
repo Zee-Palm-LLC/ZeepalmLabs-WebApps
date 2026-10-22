@@ -4,6 +4,7 @@ import { Card, T, At, Layer } from '../ui/prim.jsx'
 import { Icon } from '../ui/icons.jsx'
 import { PageTitle, UserPill } from '../shell/PageHeader.jsx'
 import { useUi, setUi } from '../store.js'
+import { MBlock, useCompact } from '../ui/mobile.jsx'
 
 export const H = 1045
 
@@ -118,10 +119,109 @@ export default function Messages() {
     setTyping(true)
   }
 
+  const compact = useCompact()
+  const [view, setView] = useState('list')
+
   const pick = (id) => {
     setUi({ chat: id })
     setRead((r) => ({ ...r, [id]: true }))
     setTyping(false)
+    if (compact) {
+      setView('chat')
+      window.scrollTo({ top: 0 })
+    }
+  }
+
+  useEffect(() => {
+    if (!compact || view !== 'chat') return
+    const el = document.querySelector('.m-compose')
+    if (el && log.length) el.scrollIntoView({ block: 'end', behavior: 'smooth' })
+  }, [compact, view, log.length, typing])
+
+  if (compact) {
+    const av = (id) => `/img/msg-${id}.jpg`
+    return (
+      <>
+        <PageTitle title="Messages" sub="Welcome and Let’s do some workout today!" />
+        {view === 'list' ? (
+          <MBlock i={0} key="list">
+            <label className="m-search">
+              <Icon name="search" size={16} sw={1.6} />
+              <input value={q} placeholder="Search name, chat, etc" onChange={(e) => setQ(e.target.value)} aria-label="Search messages" />
+            </label>
+            {[
+              ['Today', today],
+              ['Yesterday', yesterday],
+            ].map(([title, items]) =>
+              items.length ? (
+                <div key={title}>
+                  <div className="m-group-h">
+                    {title} <span>({items.length} messages)</span>
+                  </div>
+                  {items.map((c) => (
+                    <button key={c.id} className="m-thread msg-item" onClick={() => pick(c.id)}>
+                      <span className="m-av">
+                        <img src={av(c.id)} alt="" draggable="false" />
+                      </span>
+                      <span className="m-thread-body">
+                        <span className="m-thread-top">
+                          <span className="m-title">{c.name}</span>
+                          {c.trainer ? <em>Trainer</em> : null}
+                          <time>{c.time}</time>
+                        </span>
+                        <span className="m-prev">
+                          <span>{c.preview}</span>
+                          {!read[c.id] && c.unread ? <b>{c.unread}</b> : null}
+                        </span>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              ) : null
+            )}
+          </MBlock>
+        ) : (
+          <MBlock i={0} key="chat" className="chat">
+            <div className="m-chat-head">
+              <button className="m-back" onClick={() => setView('list')} aria-label="Back to messages">
+                <Icon name="left" size={18} sw={1.8} />
+              </button>
+              <span className="m-av" style={{ width: 40, height: 40 }}>
+                <img src={chat.id === 'emily-thompson' ? '/img/msg-emily-lg.jpg' : av(chat.id)} alt="" draggable="false" />
+              </span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="m-title t">{chat.name}</div>
+                <div className="m-sub">{typing ? 'typing…' : 'last seen recently'}</div>
+              </div>
+              <button className="m-back" aria-label="Call">
+                <Icon name="call" size={17} sw={1.6} />
+              </button>
+            </div>
+            <div className="m-chat-body">
+              {log.map((m, i) => (
+                <div key={i} style={{ display: 'flex', flexDirection: 'column' }}>
+                  <div className={`m-msg bubble ${m.me ? 'me' : ''}`}>{m.text.join(' ')}</div>
+                  <span className={`m-msg-t ${m.me ? 'me' : ''}`}>{m.t}</span>
+                </div>
+              ))}
+              {typing ? (
+                <div className="m-typing">
+                  <i />
+                  <i />
+                  <i />
+                </div>
+              ) : null}
+            </div>
+            <div className="m-compose">
+              <input value={draft} placeholder="Type a message.." onChange={(e) => setDraft(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && send()} aria-label="Type a message" data-s="chat-input" />
+              <button className="m-send" onClick={send} aria-label="Send" data-s="send">
+                <Icon name="send" size={18} sw={1.7} />
+              </button>
+            </div>
+          </MBlock>
+        )}
+      </>
+    )
   }
 
   return (

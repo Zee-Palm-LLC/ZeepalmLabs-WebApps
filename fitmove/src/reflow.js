@@ -29,9 +29,10 @@ function remember(el) {
 function boxOf(el) {
   remember(el)
   const x = parseFloat(el.dataset.ox)
-  const y = parseFloat(el.dataset.oy)
+  const y = el.dataset.y != null ? parseFloat(el.dataset.y) : parseFloat(el.dataset.oy)
   const w = el.dataset.ow ? parseFloat(el.dataset.ow) : el.offsetWidth
   const h = el.dataset.oh ? parseFloat(el.dataset.oh) : el.offsetHeight
+  if (el.dataset.y != null) el.dataset.oy = y
   let bx = x
   let bw = w
   if (el.classList.contains('t') && w >= 590) {
@@ -135,13 +136,37 @@ function columnsOf(groups) {
         }
       }
   }
-  cols.sort((a, b) => a.x0 - b.x0)
-  for (const c of cols) {
-    c.y0 = Math.min(...c.items.map((g) => g.y))
-    c.y1 = Math.max(...c.items.map((g) => g.y + g.h))
-  }
-  return cols
+  return cols.sort((a, b) => a.x0 - b.x0)
 }
+
+const hits = (a, b) => Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x) > 2 && Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y) > 2
+
+function stacksOf(groups) {
+  const list = groups.map((g) => ({ ...g, members: [...g.members] }))
+  let merged = true
+  while (merged) {
+    merged = false
+    for (let i = 0; i < list.length && !merged; i++)
+      for (let j = i + 1; j < list.length && !merged; j++) {
+        const a = list[i]
+        const b = list[j]
+        if (!hits(a, b)) continue
+        const x1 = Math.max(a.x + a.w, b.x + b.w)
+        const y1 = Math.max(a.y + a.h, b.y + b.h)
+        a.x = Math.min(a.x, b.x)
+        a.y = Math.min(a.y, b.y)
+        a.w = x1 - a.x
+        a.h = y1 - a.y
+        a.members.push(...b.members)
+        a.top = a.top || b.top
+        list.splice(j, 1)
+        merged = true
+      }
+  }
+  return list.sort((a, b) => (Math.abs(a.y - b.y) < 8 ? a.x - b.x : a.y - b.y))
+}
+
+const isText = (g) => g.members.every((m) => !m.el.classList.contains('card') && (m.el.hasAttribute('data-free') || m.h < 60))
 
 function place(m, x, y, z) {
   m.el.style.zoom = z === 1 ? '' : String(z)
@@ -149,32 +174,113 @@ function place(m, x, y, z) {
   m.el.style.top = `${y / z}px`
 }
 
+const ZSOLO = 2.05
+const ZBAND = 1.75
+
+function bandCost(units, avail) {
+  const sum = units.reduce((a, u) => a + u.w, 0)
+  let z = (avail - GAP * (units.length - 1)) / sum
+  const target = avail < 600 ? 1.5 : 1.05
+  const limit = units.length === 1 ? ZSOLO : ZBAND
+  let cost = 0
+  if (z > limit) {
+    cost += 4 + (z - limit)
+    z = limit
+  }
+  const l = Math.log(z / target)
+  cost += l < 0 ? 2 * l * l : l * l
+  if (units.length > 1) {
+    const ws = units.map((u) => u.w)
+    const hs = units.map((u) => u.h)
+    cost += 0.4 * Math.log(Math.max(...ws) / Math.min(...ws)) ** 2 + 0.15 * Math.log(Math.max(...hs) / Math.min(...hs)) ** 2
+  }
+  return { z, cost }
+}
+
+function uniform(run, avail, most) {
+  let k = 1
+  let best = Infinity
+  for (let c = 1; c <= Math.min(most, run.length); c++) {
+    const rows = Math.ceil(run.length / c)
+    const left = (rows * c - run.length) / c
+    const cost = bandCost(run.slice(0, c), avail).cost * rows + left * rows * 0.6
+    if (cost < best) {
+      best = cost
+      k = c
+    }
+  }
+  const z = bandCost(run.slice(0, k), avail).z
+  const bands = []
+  for (let i = 0; i < run.length; i += k) bands.push({ units: run.slice(i, i + k), z })
+  return bands
+}
+
+function pack(run, avail) {
+  const n = run.length
+  const most = avail < 600 ? 3 : 5
+  if (n >= 3 && run.every((u) => Math.abs(u.w - run[0].w) < 3)) return uniform(run, avail, most)
+  const best = new Array(n + 1).fill(Infinity)
+  const cut = new Array(n + 1).fill(0)
+  best[0] = 0
+  for (let i = 1; i <= n; i++)
+    for (let j = Math.max(0, i - most); j < i; j++) {
+      const c = best[j] + bandCost(run.slice(j, i), avail).cost + 0.01
+      if (c < best[i]) {
+        best[i] = c
+        cut[i] = j
+      }
+    }
+  const bands = []
+  for (let i = n; i > 0; i = cut[i]) bands.unshift(run.slice(cut[i], i))
+  return bands.map((b) => ({ units: b, z: bandCost(b, avail).z }))
+}
+
 function layout(container, avail, isPage) {
   const groups = groupsOf(container, isPage)
-  const tops = groups.filter((g) => g.top)
-  const rest = groups.filter((g) => !g.top)
-  const cols = columnsOf(rest)
   const units = []
-  if (tops.length) {
-    tops.sort((a, b) => a.x - b.x)
-    for (const g of tops) units.push({ kind: 'col', w: g.w, h: g.h, x0: g.x, y0: g.y, items: [g] })
+  const tops = groups.filter((g) => g.top).sort((a, b) => a.x - b.x)
+  for (const g of tops) units.push({ kind: isText(g) ? 'text' : 'solo', w: g.w, h: g.h, x0: g.x, y0: g.y, items: [g], fixed: isText(g) })
+  const rest = groups.filter((g) => !g.top)
+  for (const c of isPage ? columnsOf(rest) : [{ items: rest }]) {
+    for (const g of stacksOf(c.items)) {
+      const unit = { w: g.w, h: g.h, x0: g.x, y0: g.y, items: [g] }
+      const cardEl = g.members.find((m) => m.el.classList.contains('card') && m.w === g.w && m.h === g.h)
+      if (isText(g)) units.push({ ...unit, kind: 'text' })
+      else if (g.w > avail && cardEl && canExplode(cardEl.el)) units.push({ ...unit, kind: 'explode', card: cardEl, group: g, w: avail })
+      else units.push({ ...unit, kind: g.w >= avail * 0.75 ? 'solo' : 'pack' })
+    }
   }
-  for (const c of cols) {
-    const w = c.x1 - c.x0
-    const only = c.items.length === 1 && c.items[0].members.length >= 1 ? c.items[0] : null
-    const cardEl = only && only.members.find((m) => m.el.classList.contains('card') && m.w === only.w)
-    if (w > avail && cardEl && canExplode(cardEl.el)) {
-      units.push({ kind: 'explode', group: only, card: cardEl, w: avail })
-    } else units.push({ kind: 'col', w, h: c.y1 - c.y0, x0: c.x0, y0: c.y0, items: c.items })
+  const bands = []
+  let run = []
+  const flushRun = () => {
+    if (run.length) bands.push(...pack(run, avail))
+    run = []
   }
+  for (const u of units) {
+    if (u.kind === 'pack') {
+      run.push(u)
+      continue
+    }
+    flushRun()
+    if (u.kind === 'explode') bands.push({ units: [u], z: 1 })
+    else if (u.kind === 'text') bands.push({ units: [u], z: null })
+    else bands.push({ units: [u], z: Math.min(ZSOLO, avail / u.w) })
+  }
+  flushRun()
+  for (let i = 0; i < bands.length; i++) {
+    const b = bands[i]
+    if (b.z != null) continue
+    const u = b.units[0]
+    const next = bands.slice(i + 1).find((n) => n.z != null && n.units[0].kind !== 'explode')
+    const base = u.fixed || !next ? 1 : Math.min(next.z, 1.6)
+    b.z = Math.min(base, avail / u.w)
+  }
+  const x0 = isPage ? PAD : 14
   let y = isPage ? PAD : 14
-  let band = []
-  let bandW = 0
-  const flush = () => {
-    if (!band.length) return
-    let x = isPage ? PAD : 14
+  for (const b of bands) {
+    let x = x0
     let bh = 0
-    for (const u of band) {
+    for (const u of b.units) {
       if (u.kind === 'explode') {
         const card = u.card
         const inner = layout(card.el, u.w - 28, false)
@@ -189,23 +295,13 @@ function layout(container, avail, isPage) {
         x += u.w + GAP
         continue
       }
-      const z = u.w > avail ? avail / u.w : 1
+      const z = b.z
       for (const g of u.items) for (const m of g.members) place(m, x + (m.ox - u.x0) * z, y + (m.oy - u.y0) * z, z)
       bh = Math.max(bh, u.h * z)
       x += u.w * z + GAP
     }
-    y += bh + GAP
-    band = []
-    bandW = 0
+    y += bh + (b.units[0].kind === 'text' ? 8 : GAP)
   }
-  for (const u of units) {
-    const uw = Math.min(u.w, avail)
-    if (band.length && bandW + GAP + uw > avail) flush()
-    band.push(u)
-    bandW += (band.length > 1 ? GAP : 0) + uw
-    if (u.kind === 'explode') flush()
-  }
-  flush()
   return y + (isPage ? PAD - GAP : 14 - GAP + 14)
 }
 

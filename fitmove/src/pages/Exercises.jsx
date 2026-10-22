@@ -3,6 +3,7 @@ import { Card, T, At } from '../ui/prim.jsx'
 import { Icon } from '../ui/icons.jsx'
 import { PageTitle, UserPill } from '../shell/PageHeader.jsx'
 import { useUi, setUi } from '../store.js'
+import { MBlock, useCompact } from '../ui/mobile.jsx'
 
 export const H = 1025
 
@@ -62,6 +63,70 @@ export default function Exercises() {
     return l
   }, [q, sort, status, doneMap])
   const toggle = (e) => setUi({ exDone: { ...(doneMap || {}), [e.name]: !e.d } })
+  const compact = useCompact()
+  if (compact) {
+    const unit = (v) => (Array.isArray(v) ? `${v[0]}${v[1] ? ` ${v[1] === 'repetitions' ? 'reps' : v[1] === 'seconds' ? 's' : v[1] === 'minutes' ? 'min' : v[1]}` : ''}` : v)
+    return (
+      <>
+        <PageTitle title="Exercises" sub="View Your Exercise History and Upcoming Workouts" />
+        <MBlock i={0}>
+          <div className="m-row">
+            <label className="m-search">
+              <Icon name="search" size={16} sw={1.6} />
+              <input value={q} placeholder="Search for exercise" onChange={(e) => setQ(e.target.value)} aria-label="Search for exercise" />
+            </label>
+          </div>
+          <div className="m-chips" style={{ marginTop: 12 }}>
+            {['All', 'Completed', 'Upcoming'].map((k) => (
+              <button key={k} className={`m-pill ${status === k ? 'on' : ''}`} onClick={() => setUi({ exStatus: k })}>
+                {k}
+              </button>
+            ))}
+            <button className={`m-pill ${sort && sort[0] === 'cal' ? 'on' : ''}`} onClick={() => setSort((s) => (s && s[0] === 'cal' ? (s[1] === -1 ? ['cal', 1] : null) : ['cal', -1]))}>
+              <Icon name="unfold" size={13} sw={1.8} />
+              Calories
+            </button>
+          </div>
+        </MBlock>
+        {list.map((e, i) => (
+          <MBlock key={e.name} i={i + 1} className="m-ex">
+            <div className="m-row">
+              <span className={`m-ico ${e.tone}`}>
+                <Icon name={e.icon} size={20} sw={1.6} />
+              </span>
+              <div>
+                <div className="m-title">{e.name}</div>
+                <div className="m-sub">{e.sets} {e.sets === 1 ? 'set' : 'sets'}</div>
+              </div>
+              <button className={`m-status ${e.d ? 'done' : ''}`} onClick={() => toggle(e)}>
+                <i />
+                {e.d ? 'Completed' : 'Upcoming'}
+              </button>
+            </div>
+            <div className="m-stats">
+              <div className="m-stat">
+                <b>{unit(e.reps)}</b>
+                <span>Reps</span>
+              </div>
+              <div className="m-stat">
+                <b>{unit(e.rest)}</b>
+                <span>Rest</span>
+              </div>
+              <div className="m-stat">
+                <b>{e.cal} cal</b>
+                <span>{e.weight[0] === '-' ? 'Calories' : `${unit(e.weight)}`}</span>
+              </div>
+            </div>
+          </MBlock>
+        ))}
+        {!list.length ? (
+          <MBlock i={1}>
+            <div className="m-empty">No exercises match this filter.</div>
+          </MBlock>
+        ) : null}
+      </>
+    )
+  }
   return (
     <>
       <PageTitle title="Exercises" sub="View Your Exercise History and Upcoming Workouts" />

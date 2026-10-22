@@ -7,6 +7,7 @@ import './styles/base.css'
 import './styles/dashboard.css'
 import './styles/pages.css'
 import './styles/tracker.css'
+import './styles/mobile.css'
 import gsap from 'gsap'
 import App from './App.jsx'
 

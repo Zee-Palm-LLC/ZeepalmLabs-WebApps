@@ -4,6 +4,7 @@ import { Icon, Glyph } from '../ui/icons.jsx'
 import { PageTitle, UserPill } from '../shell/PageHeader.jsx'
 import { goto } from '../nav.js'
 import { useUi, setUi } from '../store.js'
+import { MBlock, useCompact } from '../ui/mobile.jsx'
 
 export const H = 1024
 
@@ -76,6 +77,115 @@ export default function Schedule() {
     setUi({ schedCats: cur.includes(c) ? cur.filter((v) => v !== c) : [...cur, c] })
   }
   const active = (c) => !filter || !filter.length || filter.includes(c)
+  const compact = useCompact()
+  const [day, setDay] = useState(2)
+  if (compact) {
+    const mins = (t) => {
+      const [hm, ap] = t.split(' ')
+      const [h, m] = hm.split(':').map(Number)
+      return ((h % 12) + (ap === 'PM' ? 12 : 0)) * 60 + m
+    }
+    const today = EVENTS.filter((e) => e.d === day && active(e.cat)).sort((a, b) => mins(a.time) - mins(b.time))
+    return (
+      <>
+        <PageTitle title="Schedule" sub="Plan your week of classes" />
+        <MBlock i={0}>
+          <div className="m-stats" style={{ marginTop: 0 }}>
+            <div className="m-stat">
+              <b>12</b>
+              <span>Total Classes</span>
+            </div>
+            <div className="m-stat">
+              <b>10 hrs</b>
+              <span>Total Duration</span>
+            </div>
+            <div className="m-stat">
+              <b>5,400</b>
+              <span>Total Calories</span>
+            </div>
+          </div>
+          <div className="m-head" style={{ marginTop: 16, marginBottom: 0 }}>
+            <span className="m-h">August 2028</span>
+            <span className="m-sub">Week {week}</span>
+          </div>
+          <div className="m-days">
+            {DAYS.map((d, i) => (
+              <button key={d} className={`m-day ${day === i ? 'on' : ''}`} onClick={() => setDay(i)}>
+                {d.slice(0, 3)}
+                <b>{DATES[i]}</b>
+                {EVENTS.some((e) => e.d === i && active(e.cat)) ? <em /> : null}
+              </button>
+            ))}
+          </div>
+          <div className="m-chips" style={{ margin: '12px -16px 4px' }}>
+            {Object.keys(CAT).map((c) => (
+              <button key={c} className={`m-pill ${filter && filter.includes(c) ? 'on' : ''}`} onClick={() => toggleCat(c)} style={filter && filter.includes(c) ? null : { background: CAT[c].fill }}>
+                {CAT[c].label}
+              </button>
+            ))}
+          </div>
+          {today.map((e) => (
+            <button key={e.id} className={`m-event ${sel === e.id ? 'sel' : ''}`} style={{ background: CAT[e.cat].fill }} onClick={() => setUi({ schedSel: e.id })}>
+              <span className="m-time">
+                {e.time.split(' ')[0]}
+                <span>{e.time.split(' ')[1]}</span>
+              </span>
+              <span>
+                <span className="m-title" style={{ display: 'block' }}>
+                  {e.title.join(' ')}
+                </span>
+                <span className="m-sub" style={{ color: 'var(--ink2)' }}>
+                  {e.who} · {e.dur} min · {e.level}
+                </span>
+              </span>
+            </button>
+          ))}
+          {!today.length ? <div className="m-empty">No classes on this day.</div> : null}
+        </MBlock>
+        <MBlock i={1} data-s="detail">
+          <div className="m-head">
+            <span className="m-h">Schedule Detail</span>
+            <span className="m-sub">{ev.date || `August ${DATES[ev.d]}, ${ev.time}`}</span>
+          </div>
+          <div className="m-hero">
+            <img src="/img/sched-class.jpg" alt="" draggable="false" style={{ height: 170 }} />
+            <h2 style={{ fontSize: 18, marginBottom: 2 }}>{ev.title.join(' ')}</h2>
+            <span className="m-sub">{CAT[ev.cat].label}</span>
+          </div>
+          <div className="m-stats">
+            <div className="m-stat">
+              <b>{ev.dur} min</b>
+              <span>Duration</span>
+            </div>
+            <div className="m-stat">
+              <b>{ev.level}</b>
+              <span>Level</span>
+            </div>
+            <div className="m-stat">
+              <b>{ev.part}</b>
+              <span>Participants</span>
+            </div>
+          </div>
+          <div className="m-sep" />
+          <div className="m-row">
+            <span className="m-av">
+              <img src="/img/jordan-sm.jpg" alt="" draggable="false" />
+            </span>
+            <div>
+              <div className="m-title">{ev.who}</div>
+              <div className="m-sub">Available</div>
+            </div>
+            <button className="m-add" onClick={() => goto('/trainers/jordan-reed')}>
+              Trainer
+            </button>
+          </div>
+          <button className="m-add" style={{ width: '100%', height: 42, marginTop: 14, borderRadius: 21 }} onClick={() => goto('/classes')}>
+            See Class
+          </button>
+        </MBlock>
+      </>
+    )
+  }
   return (
     <>
       <PageTitle title="Schedule" center />

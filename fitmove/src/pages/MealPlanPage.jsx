@@ -4,6 +4,7 @@ import { Icon, Glyph } from '../ui/icons.jsx'
 import { PageTitle, UserPill } from '../shell/PageHeader.jsx'
 import { goto } from '../nav.js'
 import { useUi, setUi } from '../store.js'
+import { MBlock, useCompact } from '../ui/mobile.jsx'
 
 export const H = 1027
 
@@ -139,10 +140,60 @@ export default function MealPlanPage() {
     [tab, q]
   )
   const [page, setPage] = useState(1)
+  const compact = useCompact()
+  const toggleAdd = (id) => setUi({ mealAdded: { ...added, [id]: !added[id] } })
   return (
     <>
       <PageTitle title="Meal Plan" sub="Explore a Variety of Meal Options" />
       <UserPill />
+      {compact ? (
+        <MBlock i={0} className="m-menu">
+          <div className="m-head" style={{ marginBottom: 10 }}>
+            <span className="m-h">All Menu</span>
+            <button className="m-add">Add Menu</button>
+          </div>
+          <label className="m-search">
+            <Icon name="search" size={16} sw={1.6} />
+            <input value={q} placeholder="Search for menu" onChange={(e) => setUi({ mealQ: e.target.value })} aria-label="Search for menu" />
+          </label>
+          <div className="m-tabs">
+            {TABS.map((t) => (
+              <button key={t} className={`m-pill tab ${tab === t ? 'on' : ''}`} onClick={() => setUi({ mealTab: t })}>
+                {t}
+              </button>
+            ))}
+          </div>
+          {list.map((m) => (
+            <div key={m.id} className="m-meal menu-row" role="button" tabIndex={0} onClick={() => goto(`/meal-plan/${m.id}`)}>
+              <img src={m.img} alt={m.title} draggable="false" />
+              <div className="m-meal-body">
+                <span>
+                  <span className={`m-tag ${TAG_TONE[m.tag]}`}>{m.tag}</span>
+                </span>
+                <span className="m-title">{m.title}</span>
+                <span className="m-meal-desc">{m.desc}</span>
+                <div className="m-row" style={{ marginTop: 2 }}>
+                  <span className="m-meta">
+                    <span>{m.cal} Cal</span>
+                    <span>{m.mins}</span>
+                  </span>
+                  <button
+                    className={`m-add add-pill ${added[m.id] ? 'added' : ''}`}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      toggleAdd(m.id)
+                    }}
+                  >
+                    {added[m.id] ? 'Added' : 'Add'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+          {!list.length ? <div className="m-empty">No meals match this filter.</div> : null}
+        </MBlock>
+      ) : null}
+      {compact ? null : (
       <Card x={252.9} y={83.8} w={777.5} h={893} className="menu-card">
         <T x={273} b={122} s={16} w={500} c="var(--ink)">
           All Menu
@@ -213,6 +264,7 @@ export default function MealPlanPage() {
           </At>
         ))}
       </Card>
+      )}
 
       <Card x={1046.4} y={83.8} w={377.7} h={454} className="side-card">
         <T x={1067.8} b={121.5} s={16} w={500} c="var(--ink)">

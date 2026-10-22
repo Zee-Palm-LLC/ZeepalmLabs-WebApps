@@ -249,13 +249,21 @@ export default function Chat({ messages, typing, onSend, onQuick, onBook, mode, 
   useLayoutEffect(() => {
     if (!empty || !intro) return
     const el = root.current
-    const tl = gsap.timeline({ delay: 0.15 })
-    tl.fromTo(el.querySelector('.orb'), { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: 'elastic.out(1, 0.7)' }, 0)
-    tl.fromTo(el.querySelectorAll('.hello .w'), { opacity: 0, y: 14, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6, stagger: 0.05, ease: 'power3.out' }, 0.25)
-    tl.fromTo(el.querySelectorAll('.chip'), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.05, ease: 'power3.out', clearProps: 'transform' }, 0.55)
-    tl.fromTo(el.querySelector('.composer'), { opacity: 0, y: 24, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out', clearProps: 'transform' }, 0.7)
-    tl.fromTo(el.querySelectorAll('.trk-title, .trk'), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.035, ease: 'back.out(2)', clearProps: 'transform' }, 0.9)
-    return () => tl.kill()
+    const film = new URLSearchParams(window.location.search).has('film')
+    let tl = null
+    const build = () => {
+      tl = gsap.timeline({ delay: film ? 0 : 0.15 })
+      tl.fromTo(el.querySelector('.orb'), { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: 'elastic.out(1, 0.7)' }, 0)
+      tl.fromTo(el.querySelectorAll('.hello .w'), { opacity: 0, y: 14, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6, stagger: 0.05, ease: 'power3.out' }, 0.25)
+      tl.fromTo(el.querySelectorAll('.chip'), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.05, ease: 'power3.out', clearProps: 'transform' }, 0.55)
+      tl.fromTo(el.querySelector('.composer'), { opacity: 0, y: 24, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out', clearProps: 'transform' }, 0.7)
+      tl.fromTo(el.querySelectorAll('.trk-title, .trk'), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.035, ease: 'back.out(2)', clearProps: 'transform' }, 0.9)
+    }
+    if (film) {
+      gsap.set(el.querySelectorAll('.orb, .hello .w, .chip, .composer, .trk-title, .trk'), { opacity: 0 })
+      window.__filmStart = build
+    } else build()
+    return () => tl?.kill()
   }, [])
 
   const toggleTracker = (t) => {

@@ -90,7 +90,7 @@ function Prism() {
     d.x += d.vx; d.y += d.vy; d.vx *= 0.9; d.vy *= 0.9;
     const h = S.hero, w = S.worksIntro;
     const vp = viewport.getCurrentViewport(undefined, [0, 0, 1.2]);
-    const base = Math.min(vp.height * 0.78, vp.width * 0.5);
+    const base = vp.width < vp.height ? vp.width * 0.92 : Math.min(vp.height * 0.78, vp.width * 0.5); // portrait: fill the width
     const fly = easeInOut(range(w, 0.02, 0.3));
     group.current.position.set(S.mouse.x * 0.08, 0.05 + S.mouse.y * 0.05 + fly * 0.2, lerp(1.2, 9.6, fly));
     group.current.scale.setScalar(base * (0.92 + 0.08 * (P.intro ?? 1)) * lerp(1, 1.6, fly));

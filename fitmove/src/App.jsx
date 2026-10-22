@@ -115,9 +115,25 @@ export default function App() {
       if (list.some((m) => m.type === 'childList' && m.target === el)) run()
     })
     mo.observe(el, { childList: true })
+    const ro = new ResizeObserver(() => {
+      let changed = false
+      el.querySelectorAll(':scope > .mblock').forEach((b) => {
+        if (String(b.offsetHeight) !== b.dataset.mh) {
+          b.dataset.mh = String(b.offsetHeight)
+          changed = true
+        }
+      })
+      if (changed) run()
+    })
+    const watch = () => el.querySelectorAll(':scope > .mblock').forEach((b) => ro.observe(b))
+    watch()
+    const mo2 = new MutationObserver(watch)
+    mo2.observe(el, { childList: true })
     document.fonts?.ready.then(run)
     return () => {
       mo.disconnect()
+      mo2.disconnect()
+      ro.disconnect()
       cancelAnimationFrame(raf)
     }
   }, [compact, cw, route])

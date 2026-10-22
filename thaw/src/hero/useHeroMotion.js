@@ -32,10 +32,16 @@ export function useHeroMotion(wrap, root, canvas, mode) {
       stage.settle()
       if (!still) stopIdle = startIdle(root.current)
     } else {
-      tl = playIntro(root.current, stage, nav)
-      tl.eventCallback('onComplete', () => {
-        stopIdle = startIdle(root.current)
-      })
+      const go = () => {
+        tl = playIntro(root.current, stage, nav)
+        tl.eventCallback('onComplete', () => {
+          stopIdle = startIdle(root.current)
+        })
+      }
+      if (new URLSearchParams(window.location.search).has('film')) {
+        stage.state.melt = 0
+        window.__thaw = { stage, start: go }
+      } else go()
     }
     const el = root.current
     const words = {
